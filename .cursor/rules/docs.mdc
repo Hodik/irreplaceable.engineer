@@ -1,0 +1,76 @@
+---
+alwaysApply: true
+---
+
+# Documentation Standards
+
+## Reading Documentation First
+
+**Always read the existing documentation in the `docs/` folder before starting any work.** This ensures you understand the system architecture, technical context, and existing patterns.
+
+
+## Documentation Structure
+
+### Core Documentation Files
+
+1. `system_patterns.md`
+   - System architecture
+   - Key technical decisions
+   - Design patterns in use
+   - Component relationships
+   - Critical implementation paths
+
+2. `tech_context.md`
+   - Technologies used
+   - Development setup
+   - Technical constraints
+   - Dependencies
+   - Tool usage patterns
+
+3. `testing.md`
+   - Test types and structure
+   - Fixtures and mocking guidance
+   - How to run tests
+   - Async/task testing guidance
+
+4. `formatting.md`
+   - Language and toolchain version
+   - Formatting rules and conventions
+   - Indentation and line length standards
+   - Import organization
+
+5. `conventions.md`
+   - Standard app structure
+   - Naming conventions across components
+   - Pagination patterns
+   - Startup and signal registration
+   - Import/export and custom actions
+
+
+
+### Additional Context
+
+Create additional files/folders within `docs/` when they help organize:
+- Complex feature documentation
+- Integration specifications
+- Important independent components
+
+## Updating Documentation
+
+### When to Update Existing Docs
+
+- **Add to existing files** when the update fits the file's context and purpose
+- **Keep module/system structure** - organize content by system components, not chronologically
+- **Only add important changes** - document architectural decisions, patterns, and technical constraints
+
+### When to Create New Docs
+
+- **Create new files** when documenting a new independent system or major feature
+- **Use descriptive names** that clearly indicate the content (e.g., `payment_integration.md`, `caching_strategy.md`)
+- **Update this file** to reference any new core documentation files
+
+### Documentation Quality
+
+- Keep docs **concise and scannable** - use bullet points and headers
+- Document **why** decisions were made, not just what was done
+- Maintain **logical structure** within files - group related concepts together
