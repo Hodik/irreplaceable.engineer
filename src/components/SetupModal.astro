@@ -1,0 +1,503 @@
+---
+// Setup modal content with CLI commands and download options
+---
+
+<div class="setup-modal">
+  <h2>Setup</h2>
+  <p class="setup-description">Choose one of the following setup options:</p>
+
+  <div class="setup-option">
+    <h3 class="option-heading">Option 1: Just click and copy commands</h3>
+    <div class="badge-wrapper">
+      <div class="requires-badge">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        Requires Node
+      </div>
+    </div>
+
+    <div class="command-boxes">
+      <div class="command-box">
+        <h3>Cursor</h3>
+        <div class="command-display">
+          <code
+            >npx degit Hodik/ai-setup/.cursor .cursor && npx degit
+            Hodik/ai-setup/docs docs</code
+          >
+        </div>
+        <button
+          class="copy-btn"
+          data-copy="npx degit Hodik/ai-setup/.cursor .cursor && npx degit Hodik/ai-setup/docs docs"
+        >
+          <svg
+            class="copy-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            ></path>
+          </svg>
+          <span class="copy-text">Copy Command</span>
+          <span class="copied-text">Copied!</span>
+        </button>
+      </div>
+
+      <div class="command-box">
+        <h3>Claude Code</h3>
+        <div class="command-display">
+          <code
+            >npx degit Hodik/ai-setup/.claude .claude && npx degit
+            Hodik/ai-setup/CLAUDE.md CLAUDE.md && npx degit Hodik/ai-setup/docs
+            docs</code
+          >
+        </div>
+        <button
+          class="copy-btn"
+          data-copy="npx degit Hodik/ai-setup/.claude .claude && npx degit Hodik/ai-setup/CLAUDE.md CLAUDE.md && npx degit Hodik/ai-setup/docs docs"
+        >
+          <svg
+            class="copy-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            ></path>
+          </svg>
+          <span class="copy-text">Copy Command</span>
+          <span class="copied-text">Copied!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <span>or</span>
+  </div>
+
+  <div class="setup-option">
+    <h3 class="option-heading">Option 2: Download as ZIP</h3>
+    <p class="option-description">
+      Download all setup files in a single ZIP archive
+    </p>
+    <div class="download-section">
+      <a href="#" class="download-zip-btn" download>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download ZIP File
+      </a>
+    </div>
+  </div>
+
+  <div class="then-section">
+    <h2>Then</h2>
+    <p class="then-description">
+      Get the complete workflow guide to maximize your productivity
+    </p>
+    <div class="main-action">
+      <a href="#" class="download-workflow-btn" download>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+          ></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Download Workflow Guide
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .setup-modal {
+    color: var(--text);
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .setup-modal h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .setup-description {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 2rem 0;
+  }
+
+  .setup-option {
+    margin-bottom: 2rem;
+  }
+
+  .option-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .option-description {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .badge-wrapper {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .requires-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(31, 79, 255, 0.12);
+    border: 1px solid rgba(31, 79, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+    width: fit-content;
+  }
+
+  .requires-badge svg {
+    flex-shrink: 0;
+  }
+
+  .command-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .command-boxes {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .command-box {
+    background: #0b0b0c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s ease;
+    min-width: 0; /* Allow boxes to shrink below content width */
+  }
+
+  .command-box:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .command-box h3 {
+    margin: 0 0 0.875rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .command-display {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 0.875rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .command-display::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .command-display::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .command-display::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .command-display code {
+    font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Fira Mono",
+      "Roboto Mono", monospace;
+    font-size: 0.875rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+    white-space: nowrap;
+    display: block;
+    padding: 0.875rem;
+  }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .copy-btn:active {
+    transform: scale(0.98);
+  }
+
+  .copy-btn.copied {
+    background: rgba(31, 79, 255, 0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .copy-icon {
+    flex-shrink: 0;
+  }
+
+  .copied-text {
+    display: none;
+  }
+
+  .copy-btn.copied .copy-text {
+    display: none;
+  }
+
+  .copy-btn.copied .copied-text {
+    display: inline;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .download-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .download-zip-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.95rem 1.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .download-zip-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .download-zip-btn svg {
+    flex-shrink: 0;
+  }
+
+  .then-section {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .then-section h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .then-description {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .main-action {
+    display: flex;
+    justify-content: center;
+  }
+
+  .download-workflow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+      0 10px 30px rgba(31, 79, 255, 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .download-workflow-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+      0 12px 35px rgba(31, 79, 255, 0.4);
+  }
+
+  .download-workflow-btn:active {
+    transform: translateY(1px);
+  }
+
+  .download-workflow-btn svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .setup-modal h2 {
+      font-size: 1.5rem;
+    }
+
+    .setup-description {
+      font-size: 0.9rem;
+    }
+
+    .option-heading {
+      font-size: 1.1rem;
+    }
+
+    .command-box {
+      padding: 0.875rem;
+    }
+
+    .command-display {
+      padding: 0;
+    }
+
+    .command-display code {
+      font-size: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .copy-btn {
+      font-size: 0.85rem;
+      padding: 0.65rem 0.875rem;
+    }
+
+    .download-workflow-btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.875rem 1.5rem;
+    }
+
+    .download-zip-btn {
+      font-size: 0.9rem;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .then-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .then-description {
+      font-size: 0.9rem;
+    }
+  }
+</style>

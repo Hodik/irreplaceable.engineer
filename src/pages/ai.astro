@@ -1,435 +1,643 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import previewImg from '../assets/Screenshot 2025-10-22 at 18.38.26.png';
+import Layout from "../layouts/Layout.astro";
+import Modal from "../components/Modal.astro";
+import SetupModal from "../components/SetupModal.astro";
+import previewImg from "../assets/Screenshot 2025-10-22 at 18.38.26.png";
 ---
 
 <Layout>
-	<section class="landing">
-		<div class="content">
-			<h1><span class="accent">AI workflow</span> that makes you <span class="underline-accent">irreplaceable</span>.</h1>
-			<p class="subheadline">
-				Use the same structured system top engineering teams use to plan, code, and review with AI — and start working like the person your team can't live without.
-			</p>
-			<ul class="bullets bullets-desktop">
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-				<li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-				<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-			</ul>
-		</div>
+  <section class="landing">
+    <div class="content">
+      <h1>
+        The proven <span class="accent">AI Workflow</span> to boost your impact as
+        a <span class="underline-accent">backend engineer</span>.
+      </h1>
+      <p class="subheadline">
+        Use the same step-by-step system top engineering teams rely on to plan,
+        code, and review smarter with AI.
+      </p>
+      <ul class="bullets bullets-desktop">
+        <li>
+          Research-backed AI prompts, rules and guidelines designed to maximize
+          AI’s intelligence and output quality for backend engineering tasks.
+        </li>
+        <li>
+          No vibe coding. Use AI to boost your efficiency and focus on high
+          leverage tasks.
+        </li>
+        <li>
+          Workflow that seamlessly integrates into your daily backend
+          development, enhancing planning, coding, and review with measurable
+          results.
+        </li>
+      </ul>
+    </div>
 
-		<div class="visual">
-			<img class="preview" src={previewImg.src} alt="Preview" />
-			<ul class="bullets bullets-mobile">
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-				<li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-				<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-			</ul>
-			<div class="form-card">
-				<h2>All I want is your email.</h2>
-				<div id="mlb2-32397838" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-32397838">
-					<div class="ml-form-align-center ">
-						<div class="ml-form-embedWrapper embedForm">
-							<div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-								<div class="ml-form-embedContent"></div>
-								<form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1610856/forms/168971146349250083/subscribe" data-code="" method="post">
-									<div class="ml-form-formContent">
-										<div class="ml-form-fieldRow ml-last-item">
-											<div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-												<input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email" />
-											</div>
-										</div>
-									</div>
-									<input type="hidden" name="ml-submit" value="1" />
-									<div class="ml-form-embedSubmit">
-										<button type="submit" class="primary">Get Access Now</button>
-										<button disabled="disabled" style="display: none;" type="button" class="loading">
-											<div class="ml-form-embedSubmitLoad"></div>
-											<span class="sr-only">Loading...</span>
-										</button>
-									</div>
-									<input type="hidden" name="anticsrf" value="true" />
-								</form>
-							</div>
-							<div class="ml-form-successBody row-success" style="display: none">
-								<div class="ml-form-successContent">
-									<h4>Thank you!</h4>
-									<p>You have successfully joined our subscriber list.</p>
-									<a class="download-btn" href={previewImg.src} download>Download PDF</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<script is:inline>
-					function ml_webform_success_32397838() {
-						const container = document.querySelector('.ml-subscribe-form-32397838');
-						if (!container) return;
-						const success = container.querySelector('.row-success');
-						const form = container.querySelector('.row-form');
-						if (success instanceof HTMLElement) success.style.display = 'block';
-						if (form instanceof HTMLElement) form.style.display = 'none';
-					}
-				</script>
-				<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript" defer></script>
-				<script>fetch('https://assets.mailerlite.com/jsonp/1610856/forms/168971146349250083/takel')</script>
-			</div>
-		</div>
-	</section>
+    <div class="visual">
+      <img class="preview" src={previewImg.src} alt="Preview" />
+      <ul class="bullets bullets-mobile">
+        <li>
+          Research-backed AI prompts, rules and guidelines designed to maximize
+          AI’s intelligence and output quality for backend engineering tasks.
+        </li>
+        <li>
+          No vibe coding. Use AI to boost your efficiency and focus on high
+          leverage tasks.
+        </li>
+        <li>
+          Workflow that seamlessly integrates into your daily backend
+          development, enhancing planning, coding, and review with measurable
+          results.
+        </li>
+      </ul>
+      <div class="form-card">
+        <h2>All I want is your email.</h2>
+        <div
+          id="mlb2-32397838"
+          class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-32397838"
+        >
+          <div class="ml-form-align-center">
+            <div class="ml-form-embedWrapper embedForm">
+              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                <div class="ml-form-embedContent"></div>
+                <form
+                  class="ml-block-form"
+                  action="https://assets.mailerlite.com/jsonp/1610856/forms/168971146349250083/subscribe"
+                  data-code=""
+                  method="post"
+                >
+                  <div class="ml-form-formContent">
+                    <div class="ml-form-fieldRow ml-last-item">
+                      <div
+                        class="ml-field-group ml-field-email ml-validate-email ml-validate-required"
+                      >
+                        <input
+                          aria-label="email"
+                          aria-required="true"
+                          type="email"
+                          class="form-control"
+                          name="fields[email]"
+                          placeholder="Email"
+                          autocomplete="email"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="ml-submit" value="1" />
+                  <div class="ml-form-embedSubmit">
+                    <button type="submit" class="primary">Get Access Now</button
+                    >
+                    <button
+                      disabled="disabled"
+                      style="display: none;"
+                      type="button"
+                      class="loading"
+                    >
+                      <div class="ml-form-embedSubmitLoad"></div>
+                      <span class="sr-only">Loading...</span>
+                    </button>
+                  </div>
+                  <input type="hidden" name="anticsrf" value="true" />
+                </form>
+              </div>
+              <div
+                class="ml-form-successBody row-success"
+                style="display: none"
+              >
+                <div class="ml-form-successContent">
+                  <h4>Thank you!</h4>
+                  <p>You have successfully joined our subscriber list.</p>
+                  <button
+                    class="download-btn"
+                    data-modal-trigger="setup-modal"
+                    type="button"
+                  >
+                    Get Setup Instructions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script is:inline>
+          function ml_webform_success_32397838() {
+            // Open modal directly on success
+            const modal = document.getElementById("setup-modal");
+            if (modal) {
+              modal.classList.add("open");
+              document.body.style.overflow = "hidden";
+            }
+          }
+        </script>
+        <script
+          src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+          type="text/javascript"
+          defer></script>
+        <script>
+          fetch(
+            "https://assets.mailerlite.com/jsonp/1610856/forms/168971146349250083/takel"
+          );
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <Modal id="setup-modal">
+    <SetupModal />
+  </Modal>
+
+  <script is:inline>
+    // Modal functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
+      const modals = document.querySelectorAll("[data-modal]");
+      const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+      // Open modal
+      modalTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", function () {
+          const modalId = this.getAttribute("data-modal-trigger");
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add("open");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+
+      // Close modal
+      function closeModal(modal) {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      modalCloses.forEach((closeBtn) => {
+        closeBtn.addEventListener("click", function () {
+          const modal = this.closest("[data-modal]");
+          if (modal) {
+            closeModal(modal);
+          }
+        });
+      });
+
+      // Close on backdrop click
+      modals.forEach((modal) => {
+        modal.addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeModal(modal);
+          }
+        });
+      });
+
+      // Close on ESC key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          modals.forEach((modal) => {
+            if (modal.classList.contains("open")) {
+              closeModal(modal);
+            }
+          });
+        }
+      });
+
+      // Copy to clipboard functionality
+      const copyButtons = document.querySelectorAll("[data-copy]");
+      copyButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const textToCopy = this.getAttribute("data-copy");
+          const btn = this;
+
+          navigator.clipboard
+            .writeText(textToCopy)
+            .then(() => {
+              btn.classList.add("copied");
+              setTimeout(() => {
+                btn.classList.remove("copied");
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy:", err);
+            });
+        });
+      });
+    });
+  </script>
 </Layout>
 
 <style>
-	:root {
-		--bg: #0a0a0a;
-		--text: #f5f5f5;
-		--muted: #b3b3b3;
-		--card: #0f0f10;
-		--accent: #1f4fff;
-		--accent-2: #6a3df0;
-	}
+  @import "../styles/global.css";
 
-	:global(html),
-	:global(body) {
-		background: #000;
-		color: var(--text);
-		height: 100%;
-		margin: 0;
-		font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-			'Apple Color Emoji', 'Segoe UI Emoji';
-	}
+  @media (min-width: 981px) {
+    :global(html),
+    :global(body) {
+      overflow: hidden; /* no scrolling on desktop */
+    }
+  }
 
-	@media (min-width: 981px) {
-		:global(html),
-		:global(body) {
-			overflow: hidden; /* no scrolling on desktop */
-		}
-	}
+  .landing {
+    height: 100svh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 0 clamp(1.25rem, 4vw, 4rem);
+  }
 
-	.landing {
-		height: 100svh;
-		display: grid;
-		grid-template-columns: 1.2fr 0.8fr;
-		grid-template-rows: 1fr;
-		gap: 2rem;
-		align-items: center;
-		padding: 0 clamp(1.25rem, 4vw, 4rem);
-	}
+  .branding-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-	.content {
-		text-align: center;
-		justify-self: center;
-		max-width: 70ch;
-		grid-column: 1;
-		grid-row: 1;
-	}
+  .content {
+    text-align: center;
+    justify-self: center;
+    max-width: 70ch;
+    grid-column: 1;
+    grid-row: 2;
+  }
 
-	.visual {
-		grid-column: 2;
-		grid-row: 1;
-	}
+  .visual {
+    grid-column: 2;
+    grid-row: 2;
+  }
 
-	@media (min-width: 981px) {
-		.bullets-mobile {
-			display: none !important;
-		}
-	}
+  @media (min-width: 981px) {
+    .bullets-mobile {
+      display: none !important;
+    }
+  }
 
-	.content h1 {
-		font-size: clamp(2rem, 6vw, 3.5rem);
-		line-height: 1.1;
-		margin: 0 0 1rem 0;
-		letter-spacing: -0.02em;
-	}
+  .content h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.1;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+  }
 
-	.accent { color: var(--accent); }
+  .accent {
+    color: var(--accent);
+  }
 
-	.underline-accent {
-		position: relative;
-		display: inline-block;
-	}
+  .underline-accent {
+    position: relative;
+    display: inline-block;
+  }
 
-	.underline-accent::after {
-		content: '';
-		position: absolute;
-		left: -2px;
-		right: -2px;
-		bottom: -6px;
-		height: 12px;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		/* Handwritten-like underline using an SVG path */
-		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 11, 58 6 S 90 6, 98 9' fill='none' stroke='%231f4fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-	}
+  .underline-accent::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -6px;
+    height: 12px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* Handwritten-like underline using an SVG path */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 11, 58 6 S 90 6, 98 9' fill='none' stroke='%231f4fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  }
 
-	.subheadline {
-		font-size: clamp(1rem, 2.4vw, 1.25rem);
-		color: var(--muted);
-		max-width: 60ch;
-		margin: 0 0 1.5rem 0;
-	}
+  .subheadline {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: var(--muted);
+    max-width: 60ch;
+    margin: 0 0 1.5rem 0;
+  }
 
-	.bullets {
-		list-style: none;
-		padding: 0;
-		margin: 1.25rem 0 0 0;
-		display: inline-block;
-		text-align: left;
-	}
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0 0;
+    display: inline-block;
+    text-align: left;
+  }
 
-	.bullets li {
-		color: #d6d6d6;
-		font-size: clamp(0.95rem, 2vw, 1.1rem);
-		display: flex;
-		align-items: center;
-		margin-bottom: 0.75rem;
-	}
+  .bullets li {
+    color: #d6d6d6;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
 
-	.bullets li:last-child {
-		margin-bottom: 0;
-	}
+  .bullets li:last-child {
+    margin-bottom: 0;
+  }
 
-	.bullets li::before {
-		content: '✓';
-		color: var(--accent);
-		font-weight: 800;
-		margin-right: 0.75rem;
-	}
+  .bullets li::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: 800;
+    margin-right: 0.75rem;
+  }
 
-	.visual {
-		position: relative;
-		height: min(70svh, 560px);
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
-		margin-right: clamp(2rem, 6vw, 8rem);
-	}
+  .visual {
+    position: relative;
+    height: min(70svh, 560px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: clamp(2rem, 6vw, 8rem);
+  }
 
-	.preview {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: min(420px, 42vw);
-		max-height: 100%;
-		object-fit: cover;
-		border-radius: 16px;
-		filter: blur(1px);
-		box-shadow:
-			0 8px 40px rgba(0, 0, 0, 0.8),
-			0 0 0 1px rgba(255, 255, 255, 0.06);
-		opacity: 0.95;
-	}
+  .preview {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(420px, 42vw);
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    filter: blur(1px);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.8),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+    opacity: 0.95;
+  }
 
-	.form-card {
-		position: relative;
-		z-index: 1;
-		width: min(420px, 100%);
-		background: rgba(15, 15, 16, 0.98);
-		border-radius: 16px;
-		padding: 2rem;
-		box-shadow:
-			0 0 0 1px rgba(255, 255, 255, 0.06),
-			0 30px 80px rgba(31, 79, 255, 0.15),
-			0 16px 40px rgba(106, 61, 240, 0.12);
-	}
+  .form-card {
+    position: relative;
+    z-index: 1;
+    width: min(420px, 100%);
+    background: rgba(15, 15, 16, 0.98);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 30px 80px rgba(31, 79, 255, 0.15),
+      0 16px 40px rgba(106, 61, 240, 0.12);
+  }
 
-	/* MailerLite embed overrides */
-	.form-card .ml-embedded form,
-	.form-card .ml-form-embedWrapper,
-	.form-card .ml-form-embedContainer {
-		background: transparent !important;
-		box-shadow: none !important;
-		padding: 0 !important;
-		max-width: 100% !important;
-		width: 100% !important;
-	}
+  /* MailerLite embed overrides */
+  .form-card .ml-embedded form,
+  .form-card .ml-form-embedWrapper,
+  .form-card .ml-form-embedContainer {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
 
-	.form-card .ml-form-embedWrapper.embedForm { max-width: 100% !important; width: 100% !important; }
+  .form-card .ml-form-embedWrapper.embedForm {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
 
-	/* Hide ML default headings/paragraphs inside the embed content to match our design */
-	.form-card .ml-form-embedContent h4,
-	.form-card .ml-form-embedContent p { display: none !important; }
+  /* Hide ML default headings/paragraphs inside the embed content to match our design */
+  .form-card .ml-form-embedContent h4,
+  .form-card .ml-form-embedContent p {
+    display: none !important;
+  }
 
-	.form-card .ml-form-embedContainer .ml-form-embedBody,
-	.form-card .ml-form-embedContainer .ml-form-embedBody .ml-form-embedContent {
-		margin: 0 !important;
-		padding: 0 !important;
-	}
+  .form-card .ml-form-embedContainer .ml-form-embedBody,
+  .form-card .ml-form-embedContainer .ml-form-embedBody .ml-form-embedContent {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-	.form-card .ml-form-embedContainer input[type='text'],
-	.form-card .ml-form-embedContainer input[type='email'] {
-		width: 100% !important;
-		box-sizing: border-box !important;
-		background: #0b0b0c !important;
-		border: 1px solid rgba(255, 255, 255, 0.08) !important;
-		border-radius: 10px !important;
-		padding: 0.875rem 1rem !important;
-		color: var(--text) !important;
-		font-size: 1rem !important;
-	}
+  .form-card .ml-form-embedContainer input[type="text"],
+  .form-card .ml-form-embedContainer input[type="email"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #0b0b0c !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    padding: 0.875rem 1rem !important;
+    color: var(--text) !important;
+    font-size: 1rem !important;
+  }
 
-	.form-card .ml-form-embedContainer input[type='text']:focus,
-	.form-card .ml-form-embedContainer input[type='email']:focus {
-		border-color: rgba(99, 102, 241, 0.8) !important;
-		box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
-	}
+  .form-card .ml-form-embedContainer input[type="text"]:focus,
+  .form-card .ml-form-embedContainer input[type="email"]:focus {
+    border-color: rgba(99, 102, 241, 0.8) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+  }
 
-	.form-card .ml-form-embedContainer button[type='submit'],
-	.form-card .ml-form-embedContainer input[type='submit'] {
-		margin-top: 0.25rem !important;
-		border: 0 !important;
-		border-radius: 12px !important;
-		padding: 0.95rem 1.25rem !important;
-		color: #fff !important;
-		font-weight: 600 !important;
-		font-size: 1rem !important;
-		cursor: pointer !important;
-		background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%) !important;
-		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25), 0 10px 30px rgba(31, 79, 255, 0.35) !important;
-		width: 100% !important;
-	}
+  .form-card .ml-form-embedContainer button[type="submit"],
+  .form-card .ml-form-embedContainer input[type="submit"] {
+    margin-top: 0.25rem !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    padding: 0.95rem 1.25rem !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    background: linear-gradient(
+      83deg,
+      var(--accent) 0%,
+      var(--accent-2) 100%
+    ) !important;
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+      0 10px 30px rgba(31, 79, 255, 0.35) !important;
+    width: 100% !important;
+  }
 
-	/* Keep loading button hidden but prevent layout shift */
-	.form-card .ml-form-embedContainer button.loading {
-		display: none !important;
-	}
+  /* Keep loading button hidden but prevent layout shift */
+  .form-card .ml-form-embedContainer button.loading {
+    display: none !important;
+  }
 
-	/* Ensure submit button stays visible during submission */
-	.form-card .ml-form-embedContainer button.primary {
-		display: block !important;
-	}
+  /* Ensure submit button stays visible during submission */
+  .form-card .ml-form-embedContainer button.primary {
+    display: block !important;
+  }
 
-	.form-card .ml-form-embedContainer .ml-form-successBody,
-	.form-card .ml-form-embedContainer .ml-form-successContent {
-		color: var(--text) !important;
-	}
+  .form-card .ml-form-embedContainer .ml-form-successBody,
+  .form-card .ml-form-embedContainer .ml-form-successContent {
+    color: var(--text) !important;
+  }
 
-	/* Success download button */
-	.download-btn {
-		display: block;
-		margin-top: 0.75rem;
-		width: 100%;
-		text-align: center;
-		text-decoration: none;
-		border-radius: 12px;
-		padding: 0.95rem 1.25rem;
-		color: #fff;
-		font-weight: 600;
-		background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
-		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25), 0 10px 30px rgba(31, 79, 255, 0.35);
-		box-sizing: border-box;
-	}
+  /* Success download button */
+  .download-btn {
+    display: block;
+    margin-top: 0.75rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 0.95rem 1.25rem;
+    color: #fff;
+    font-weight: 600;
+    background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+      0 10px 30px rgba(31, 79, 255, 0.35);
+    box-sizing: border-box;
+    border: 0;
+    cursor: pointer;
+    font-size: 1rem;
+  }
 
-	.form-card h2 {
-		margin: 0 0 1rem 0;
-		font-size: 1.25rem;
-	}
+  .download-btn:hover {
+    opacity: 0.95;
+  }
 
-	form {
-		display: grid;
-		gap: 0.75rem;
-	}
+  .download-btn:active {
+    transform: translateY(1px);
+  }
 
-	input {
-		width: 100%;
-		appearance: none;
-		background: #0b0b0c;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		border-radius: 10px;
-		padding: 0.875rem 1rem;
-		color: var(--text);
-		font-size: 1rem;
-		outline: none;
-	}
+  .form-card h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+  }
 
-	input:focus {
-		border-color: rgba(99, 102, 241, 0.8);
-		box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-	}
+  form {
+    display: grid;
+    gap: 0.75rem;
+  }
 
-	button {
-		margin-top: 0.25rem;
-		appearance: none;
-		border: 0;
-		border-radius: 12px;
-		padding: 0.95rem 1.25rem;
-		color: white;
-		font-weight: 600;
-		font-size: 1rem;
-		cursor: pointer;
-		background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
-		box-shadow:
-			inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-			0 10px 30px rgba(31, 79, 255, 0.35);
-	}
+  input {
+    width: 100%;
+    appearance: none;
+    background: #0b0b0c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.875rem 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+  }
 
-	button:hover { opacity: 0.95; }
-	button:active { transform: translateY(1px); }
+  input:focus {
+    border-color: rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  }
 
-	/* Accessibility helpers */
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
-	}
+  button {
+    margin-top: 0.25rem;
+    appearance: none;
+    border: 0;
+    border-radius: 12px;
+    padding: 0.95rem 1.25rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+      0 10px 30px rgba(31, 79, 255, 0.35);
+  }
 
-	@media (max-width: 980px) {
-		.landing {
-			display: flex;
-			flex-direction: column;
-			gap: 2rem;
-			padding: 2rem 1rem;
-			height: auto;
-			min-height: 100svh;
-			overflow-y: auto;
-		}
+  button:hover {
+    opacity: 0.95;
+  }
+  button:active {
+    transform: translateY(1px);
+  }
 
-		.content {
-			order: 1;
-			max-width: 100%;
-		}
+  /* Accessibility helpers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
-		.content h1 {
-			font-size: clamp(2.5rem, 10vw, 3.5rem);
-		}
+  /* Medium screens: adjust grid proportions */
+  @media (min-width: 981px) and (max-width: 1400px) {
+    .landing {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 0 clamp(1rem, 3vw, 2rem);
+    }
 
-		.subheadline {
-			max-width: 100%;
-		}
+    .content {
+      max-width: 55ch;
+    }
 
-		.bullets-desktop {
-			display: none;
-		}
+    .content h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+    }
 
-		.bullets-mobile {
-			display: inline-block;
-			order: 2;
-			margin-top: 0;
-		}
+    .subheadline {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      max-width: 50ch;
+    }
 
-		.visual {
-			order: 2;
-			display: contents;
-		}
+    .bullets li {
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+    }
 
-		.preview {
-			position: static;
-			width: 100%;
-			max-width: 100%;
-			max-height: none;
-			height: auto;
-			order: 1;
-		}
+    .visual {
+      height: min(65svh, 480px);
+      margin-right: clamp(1rem, 4vw, 4rem);
+    }
 
-		.form-card {
-			width: 100%;
-			max-width: 100%;
-			box-sizing: border-box;
-			order: 3;
-		}
-	}
+    .preview {
+      max-width: min(100%, 420px);
+    }
+
+    .form-card {
+      max-width: 360px;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .landing {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem 1rem;
+      height: auto;
+      min-height: 100svh;
+      overflow-y: auto;
+    }
+
+    .content {
+      order: 1;
+      max-width: 100%;
+    }
+
+    .content h1 {
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .subheadline {
+      max-width: 100%;
+    }
+
+    .bullets-desktop {
+      display: none;
+    }
+
+    .bullets-mobile {
+      display: inline-block;
+      order: 2;
+      margin-top: 0;
+    }
+
+    .visual {
+      order: 2;
+      display: contents;
+    }
+
+    .preview {
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      max-height: none;
+      height: auto;
+      order: 1;
+    }
+
+    .form-card {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      order: 3;
+    }
+  }
 </style>
