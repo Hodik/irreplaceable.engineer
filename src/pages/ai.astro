@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Modal from "../components/Modal.astro";
 import SetupModal from "../components/SetupModal.astro";
-import previewImg from "../assets/Screenshot 2025-10-22 at 18.38.26.png";
+import previewImg from "../assets/workflow-preview.jpg";
 ---
 
 <Layout>
@@ -339,24 +339,21 @@ import previewImg from "../assets/Screenshot 2025-10-22 at 18.38.26.png";
     position: relative;
     height: min(70svh, 560px);
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
+    gap: 1.5rem;
     margin-right: clamp(2rem, 6vw, 8rem);
   }
 
   .preview {
-    position: absolute;
-    top: 0;
-    right: 0;
     width: min(420px, 42vw);
-    max-height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-radius: 16px;
-    filter: blur(1px);
     box-shadow:
       0 8px 40px rgba(0, 0, 0, 0.8),
       0 0 0 1px rgba(255, 255, 255, 0.06);
-    opacity: 0.95;
   }
 
   .form-card {
@@ -577,7 +574,7 @@ import previewImg from "../assets/Screenshot 2025-10-22 at 18.38.26.png";
     }
 
     .preview {
-      max-width: min(100%, 420px);
+      width: min(100%, 420px);
     }
 
     .form-card {

@@ -1,5 +1,7 @@
 ---
 // Setup modal content with CLI commands and download options
+import workflowPdf from "../assets/ai-assisted-eng-workflow.pdf";
+import setupZip from "../assets/ai-setup.zip";
 ---
 
 <div class="setup-modal">
@@ -106,7 +108,7 @@
       Download all setup files in a single ZIP archive
     </p>
     <div class="download-section">
-      <a href="#" class="download-zip-btn" download>
+      <a href={setupZip} class="download-zip-btn" download>
         <svg
           width="18"
           height="18"
@@ -132,7 +134,7 @@
       Get the complete workflow guide to maximize your productivity
     </p>
     <div class="main-action">
-      <a href="#" class="download-workflow-btn" download>
+      <a href={workflowPdf} class="download-workflow-btn" download>
         <svg
           width="20"
           height="20"

@@ -2,4 +2,9 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({site: "https://irreplaceable.engineer"});
+export default defineConfig({
+  site: "https://irreplaceable.engineer",
+  vite: {
+    assetsInclude: ['**/*.zip', '**/*.pdf']
+  }
+});
