@@ -118,14 +118,35 @@ const { id } = Astro.props;
   }
 
   @media (max-width: 768px) {
+    .modal-overlay {
+      padding: 0;
+      background: rgba(15, 15, 16, 1);
+      backdrop-filter: none;
+    }
+
     .modal-content {
-      padding: 1.5rem;
-      max-height: 95vh;
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
+      max-height: 100vh;
+      height: 100vh;
+      max-width: 100%;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      transform: scale(1);
+    }
+
+    .modal-overlay.open .modal-content {
+      transform: scale(1);
     }
 
     .modal-close {
-      top: 0.75rem;
-      right: 0.75rem;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .modal-body {
+      margin-top: 2rem;
+      padding-bottom: 1rem;
     }
   }
 </style>
