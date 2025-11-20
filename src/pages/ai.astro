@@ -1,7 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Modal from "../components/Modal.astro";
-import SetupModal from "../components/SetupModal.astro";
 import previewImg from "../assets/workflow-preview.jpg";
 ---
 
@@ -26,8 +24,8 @@ import previewImg from "../assets/workflow-preview.jpg";
           leverage tasks.
         </li>
         <li>
-          Workflow that seamlessly integrates into your daily backend
-          development, enhancing planning, coding, and review with measurable
+          Seamlessly integrates into your Cursor/Cluade Code setup with 1
+          command, enhancing planning, coding, and review with measurable
           results.
         </li>
       </ul>
@@ -45,8 +43,8 @@ import previewImg from "../assets/workflow-preview.jpg";
           leverage tasks.
         </li>
         <li>
-          Workflow that seamlessly integrates into your daily backend
-          development, enhancing planning, coding, and review with measurable
+          Seamlessly integrates into your daily backend development with 1
+          command, enhancing planning, coding, and review with measurable
           results.
         </li>
       </ul>
@@ -106,14 +104,7 @@ import previewImg from "../assets/workflow-preview.jpg";
               >
                 <div class="ml-form-successContent">
                   <h4>Thank you!</h4>
-                  <p>You have successfully joined our subscriber list.</p>
-                  <button
-                    class="download-btn"
-                    data-modal-trigger="setup-modal"
-                    type="button"
-                  >
-                    Get Setup Instructions
-                  </button>
+                  <p>Redirecting to setup page...</p>
                 </div>
               </div>
             </div>
@@ -121,12 +112,9 @@ import previewImg from "../assets/workflow-preview.jpg";
         </div>
         <script is:inline>
           function ml_webform_success_32397838() {
-            // Open modal directly on success
-            const modal = document.getElementById("setup-modal");
-            if (modal) {
-              modal.classList.add("open");
-              document.body.style.overflow = "hidden";
-            }
+            // Set localStorage flag and redirect to setup page
+            localStorage.setItem("emailSubmitted", "true");
+            window.location.href = "/setup";
           }
         </script>
         <script
@@ -141,87 +129,6 @@ import previewImg from "../assets/workflow-preview.jpg";
       </div>
     </div>
   </section>
-
-  <Modal id="setup-modal">
-    <SetupModal />
-  </Modal>
-
-  <script is:inline>
-    // Modal functionality
-    document.addEventListener("DOMContentLoaded", function () {
-      const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
-      const modals = document.querySelectorAll("[data-modal]");
-      const modalCloses = document.querySelectorAll("[data-modal-close]");
-
-      // Open modal
-      modalTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", function () {
-          const modalId = this.getAttribute("data-modal-trigger");
-          const modal = document.getElementById(modalId);
-          if (modal) {
-            modal.classList.add("open");
-            document.body.style.overflow = "hidden";
-          }
-        });
-      });
-
-      // Close modal
-      function closeModal(modal) {
-        modal.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-
-      modalCloses.forEach((closeBtn) => {
-        closeBtn.addEventListener("click", function () {
-          const modal = this.closest("[data-modal]");
-          if (modal) {
-            closeModal(modal);
-          }
-        });
-      });
-
-      // Close on backdrop click
-      modals.forEach((modal) => {
-        modal.addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeModal(modal);
-          }
-        });
-      });
-
-      // Close on ESC key
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          modals.forEach((modal) => {
-            if (modal.classList.contains("open")) {
-              closeModal(modal);
-            }
-          });
-        }
-      });
-
-      // Copy to clipboard functionality
-      const copyButtons = document.querySelectorAll("[data-copy]");
-      copyButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-          const textToCopy = this.getAttribute("data-copy");
-          const btn = this;
-
-          navigator.clipboard
-            .writeText(textToCopy)
-            .then(() => {
-              btn.classList.add("copied");
-              setTimeout(() => {
-                btn.classList.remove("copied");
-              }, 2000);
-            })
-            .catch((err) => {
-              console.error("Failed to copy:", err);
-            });
-        });
-      });
-    });
-  </script>
 </Layout>
 
 <style>
@@ -449,35 +356,6 @@ import previewImg from "../assets/workflow-preview.jpg";
   .form-card .ml-form-embedContainer .ml-form-successBody,
   .form-card .ml-form-embedContainer .ml-form-successContent {
     color: var(--text) !important;
-  }
-
-  /* Success download button */
-  .download-btn {
-    display: block;
-    margin-top: 0.75rem;
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 12px;
-    padding: 0.95rem 1.25rem;
-    color: #fff;
-    font-weight: 600;
-    background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
-    box-shadow:
-      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-      0 10px 30px rgba(31, 79, 255, 0.35);
-    box-sizing: border-box;
-    border: 0;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  .download-btn:hover {
-    opacity: 0.95;
-  }
-
-  .download-btn:active {
-    transform: translateY(1px);
   }
 
   .form-card h2 {
