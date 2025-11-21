@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import PostHog from "../components/posthog.astro";
 ---
 
 <!doctype html>
@@ -10,6 +11,7 @@ import "../styles/global.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Irreplaceable Engineer</title>
+    <PostHog />
     <script>
       (function (w, d, e, u, f, l, n) {
         w[f] =

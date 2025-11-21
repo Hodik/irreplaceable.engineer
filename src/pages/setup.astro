@@ -167,6 +167,13 @@ import setupZip from "../assets/ai-setup.zip";
       const hasAccess = localStorage.getItem("emailSubmitted");
       if (!hasAccess) {
         window.location.href = "/ai";
+      } else {
+        // Track successful setup page access as conversion
+        if (window.posthog) {
+          window.posthog.capture('setup_page_viewed', {
+            conversion: true
+          });
+        }
       }
     }
 
@@ -177,10 +184,22 @@ import setupZip from "../assets/ai-setup.zip";
         button.addEventListener("click", function () {
           const textToCopy = this.getAttribute("data-copy");
           const btn = this;
+          
+          // Determine which IDE based on button content
+          const commandBox = btn.closest('.command-box');
+          const ideType = commandBox ? commandBox.querySelector('h3').textContent : 'unknown';
 
           navigator.clipboard
             .writeText(textToCopy)
             .then(() => {
+              // Track copy event
+              if (window.posthog) {
+                window.posthog.capture('command_copied', {
+                  ide: ideType,
+                  command_length: textToCopy.length
+                });
+              }
+              
               btn.classList.add("copied");
               setTimeout(() => {
                 btn.classList.remove("copied");
@@ -189,6 +208,23 @@ import setupZip from "../assets/ai-setup.zip";
             .catch((err) => {
               console.error("Failed to copy:", err);
             });
+        });
+      });
+      
+      // Track download clicks
+      const downloadButtons = document.querySelectorAll('a[download]');
+      downloadButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+          const href = this.getAttribute('href');
+          const downloadType = href.includes('.zip') ? 'zip_file' : 
+                              href.includes('.pdf') ? 'workflow_guide' : 'unknown';
+          
+          if (window.posthog) {
+            window.posthog.capture('download_clicked', {
+              type: downloadType,
+              file: href
+            });
+          }
         });
       });
     });

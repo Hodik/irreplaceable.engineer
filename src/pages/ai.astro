@@ -112,6 +112,13 @@ import previewImg from "../assets/workflow-preview.jpg";
         </div>
         <script is:inline>
           function ml_webform_success_32397838() {
+            // Track email submission conversion
+            if (window.posthog) {
+              window.posthog.capture("email_submitted", {
+                page: "landing",
+              });
+            }
+
             // Set localStorage flag and redirect to setup page
             localStorage.setItem("emailSubmitted", "true");
             window.location.href = "/setup";
