@@ -1,0 +1,50 @@
+---
+import "../../styles/global.css";
+---
+
+<section class="landing">
+  <slot name="content" />
+  <slot name="visual" />
+</section>
+
+<style>
+  @import "../../styles/global.css";
+
+  @media (min-width: 981px) {
+    :global(html),
+    :global(body) {
+      overflow: hidden; /* no scrolling on desktop */
+    }
+  }
+
+  .landing {
+    height: 100svh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 0 clamp(1.25rem, 4vw, 4rem);
+  }
+
+  /* Medium screens: adjust grid proportions */
+  @media (min-width: 981px) and (max-width: 1400px) {
+    .landing {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 0 clamp(1rem, 3vw, 2rem);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .landing {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem 1rem;
+      height: auto;
+      min-height: 100svh;
+      overflow-y: auto;
+    }
+  }
+</style>

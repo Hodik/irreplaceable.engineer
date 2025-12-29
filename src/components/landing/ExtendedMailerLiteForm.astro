@@ -1,0 +1,170 @@
+---
+import "../../styles/mailerlite-overrides.css";
+import FormCard from "./FormCard.astro";
+
+interface Props {
+  formId: string;
+  actionUrl: string;
+  submitText?: string;
+  successHeading?: string;
+  successMessage?: string;
+  redirectUrl?: string;
+  posthogEvent?: string;
+  posthogProps?: Record<string, any>;
+  heading: string;
+}
+
+const {
+  formId,
+  actionUrl,
+  submitText = "Subscribe",
+  successHeading = "Thank you!",
+  successMessage = "You have successfully joined our subscriber list.",
+  redirectUrl,
+  posthogEvent,
+  posthogProps = {},
+  heading,
+} = Astro.props;
+
+const successFunctionName = `ml_webform_success_${formId}`;
+---
+
+<FormCard heading={heading}>
+  <div
+    id={`mlb2-${formId}`}
+    class={`ml-form-embedContainer ml-subscribe-form ml-subscribe-form-${formId}`}
+  >
+    <div class="ml-form-align-center">
+      <div class="ml-form-embedWrapper embedForm">
+        <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+          <div class="ml-form-embedContent"></div>
+          <form
+            class="ml-block-form"
+            action={actionUrl}
+            data-code=""
+            method="post"
+          >
+            <div class="ml-form-formContent">
+              <div class="ml-form-fieldRow">
+                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                  <input
+                    aria-label="email"
+                    aria-required="true"
+                    type="email"
+                    class="form-control"
+                    name="fields[email]"
+                    placeholder="Email"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="ml-form-fieldRow">
+                <div class="ml-field-group ml-field-current_position ml-validate-required">
+                  <input
+                    aria-label="current_position"
+                    aria-required="true"
+                    type="text"
+                    class="form-control"
+                    name="fields[current_position]"
+                    placeholder="Current position"
+                    autocomplete=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="ml-form-fieldRow">
+                <div class="ml-field-group ml-field-tech_stack ml-validate-required">
+                  <input
+                    aria-label="tech_stack"
+                    aria-required="true"
+                    type="text"
+                    class="form-control"
+                    name="fields[tech_stack]"
+                    placeholder="Tech stack"
+                    autocomplete=""
+                    required
+                  />
+                </div>
+              </div>
+              <div class="ml-form-fieldRow ml-last-item">
+                <div class="ml-field-group ml-field-years_of_experience ml-validate-required">
+                  <input
+                    aria-label="years_of_experience"
+                    aria-required="true"
+                    type="number"
+                    class="form-control"
+                    name="fields[years_of_experience]"
+                    placeholder="Years of experience"
+                    autocomplete=""
+                    required
+                    min="0"
+                  />
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="ml-submit" value="1" />
+            <div class="ml-form-embedSubmit">
+              <button type="submit" class="primary">{submitText}</button>
+              <button
+                disabled="disabled"
+                style="display: none;"
+                type="button"
+                class="loading"
+              >
+                <div class="ml-form-embedSubmitLoad"></div>
+                <span class="sr-only">Loading...</span>
+              </button>
+            </div>
+            <input type="hidden" name="anticsrf" value="true" />
+          </form>
+        </div>
+        <div class="ml-form-successBody row-success" style="display: none">
+          <div class="ml-form-successContent">
+            <h4>{successHeading}</h4>
+            <p>{successMessage}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ successFunctionName, posthogEvent, posthogProps, redirectUrl }}>
+    window[successFunctionName] = function() {
+      // Track email submission conversion
+      if (posthogEvent && window.posthog) {
+        window.posthog.capture(posthogEvent, posthogProps);
+      }
+
+      // Set localStorage flag and redirect if URL provided
+      if (redirectUrl) {
+        localStorage.setItem("emailSubmitted", "true");
+        window.location.href = redirectUrl;
+      }
+    };
+  </script>
+
+  <script
+    src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+    type="text/javascript"
+    defer></script>
+
+  <script is:inline define:vars={{ actionUrl }}>
+    fetch(actionUrl.replace('/subscribe', '/takel'));
+  </script>
+</FormCard>
+
+<style>
+  form {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .ml-form-fieldRow {
+    margin-bottom: 0.75rem;
+  }
+
+  .ml-form-fieldRow.ml-last-item {
+    margin-bottom: 0;
+  }
+</style>

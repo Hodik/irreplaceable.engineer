@@ -1,0 +1,120 @@
+/* Shared Landing Page Styles */
+
+/* Typography */
+.landing-h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.underline-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-accent::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: -6px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 11, 58 6 S 90 6, 98 9' fill='none' stroke='%231f4fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
+.landing-subheadline {
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Bullet Lists */
+.landing-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0 0;
+  display: inline-block;
+  text-align: left;
+}
+
+.landing-bullets li {
+  color: #d6d6d6;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.landing-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+.landing-bullets li::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 800;
+  margin-right: 0.75rem;
+}
+
+/* Form Elements */
+.landing-input {
+  width: 100%;
+  appearance: none;
+  background: #0b0b0c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+}
+
+.landing-input:focus {
+  border-color: rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.landing-button {
+  margin-top: 0.25rem;
+  appearance: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.95rem 1.25rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow:
+    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+    0 10px 30px rgba(31, 79, 255, 0.35);
+}
+
+.landing-button:hover {
+  opacity: 0.95;
+}
+
+.landing-button:active {
+  transform: translateY(1px);
+}
+
+/* Accessibility helpers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

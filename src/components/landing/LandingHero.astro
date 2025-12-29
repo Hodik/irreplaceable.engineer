@@ -1,0 +1,62 @@
+---
+import "../../styles/landing-shared.css";
+import BulletList from "./BulletList.astro";
+
+interface Props {
+  title: string;
+  subheadline: string;
+  bullets: string[];
+}
+
+const { title, subheadline, bullets } = Astro.props;
+---
+
+<div class="content">
+  <h1 class="landing-h1" set:html={title} />
+  <p class="landing-subheadline">{subheadline}</p>
+  <BulletList items={bullets} variant="desktop" />
+</div>
+
+<style>
+  .content {
+    text-align: center;
+    justify-self: center;
+    max-width: 70ch;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  @media (min-width: 981px) and (max-width: 1400px) {
+    .content {
+      max-width: 55ch;
+    }
+
+    .content :global(.landing-h1) {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+    }
+
+    .content :global(.landing-subheadline) {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      max-width: 50ch;
+    }
+
+    .content :global(.landing-bullets li) {
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .content {
+      order: 1;
+      max-width: 100%;
+    }
+
+    .content :global(.landing-h1) {
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .content :global(.landing-subheadline) {
+      max-width: 100%;
+    }
+  }
+</style>
