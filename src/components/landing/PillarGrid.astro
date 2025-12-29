@@ -1,0 +1,23 @@
+---
+// Grid container for pillar cards
+---
+
+<div class="pillar-grid">
+  <slot />
+</div>
+
+<style>
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+  }
+
+  @media (max-width: 980px) {
+    .pillar-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

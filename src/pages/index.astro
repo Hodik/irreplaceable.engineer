@@ -1,0 +1,158 @@
+---
+import Layout from "../layouts/Layout.astro";
+import VerticalLandingLayout from "../components/landing/VerticalLandingLayout.astro";
+import ExtendedMailerLiteForm from "../components/landing/ExtendedMailerLiteForm.astro";
+import PillarGrid from "../components/landing/PillarGrid.astro";
+import PillarCard from "../components/landing/PillarCard.astro";
+
+const branding = "The Irreplaceable Backend Engineer";
+
+const headline = `Go from stuck middle backend engineer to <span class="accent">senior compensation</span> because your impact is <span class="underline-accent">undeniable</span>.`;
+
+const subheadline =
+  "Through 1:1 mentorship with continuous assessments and clear feedback driven growth path for you to build strong senior judgement and leadership influence - so you get compensated accordingly. Without grinding leetcode and working overtime.";
+
+const benefitsHeading = "Master the 3 Skills That Make You Irreplaceable";
+
+const pillars = [
+  {
+    title: "Build Senior-Level Judgment That Teams Rely On",
+    description:
+      "Develop the kind of judgment that makes seniors irreplaceable: system design, architecture tradeoffs, and knowing what not to build. You get continuous reviews on real decisions so your thinking upgrades to senior level, and becomes the reason your company's products succeed.",
+    isBonus: false,
+  },
+  {
+    title: "Learn to make visible business impact as a key person in a team",
+    description:
+      "Learn how to communicate like a senior: shaping direction, pushing back without conflict, driving decisions, and making your impact impossible to ignore. You practice concrete scripts, updates, and stakeholder conversations so your value is seen, promoted, and defended when you are not in the room.",
+    isBonus: false,
+  },
+  {
+    title: "Use AI Like a Senior Engineer, Not a Code Typist",
+    description:
+      "Stop letting AI quietly erode quality. Learn how to use AI to move faster without losing understanding, control, or architecture. You train the skill of judging, correcting, and integrating AI output so your codebase gets better over time instead of turning into an unmaintainable mess.",
+    isBonus: false,
+  },
+  {
+    title: "Become the Engineer Recruiters Chase",
+    description:
+      "A step-by-step system to reposition your CV, portfolio, and social media so you get flooded with interviews for real senior roles.",
+    isBonus: true,
+  },
+];
+---
+
+<Layout>
+  <VerticalLandingLayout>
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <p class="branding">{branding}</p>
+      <h1 class="landing-h1" set:html={headline} />
+      <p class="landing-subheadline">{subheadline}</p>
+
+      <div class="form-container">
+        <ExtendedMailerLiteForm
+          formId="35124134"
+          actionUrl="https://assets.mailerlite.com/jsonp/1610856/forms/175133780337493144/subscribe"
+          heading="Join the waitlist"
+          submitText="Request early access"
+          successHeading="Thank you!"
+          successMessage="You have successfully joined our subscriber list."
+          redirectUrl="/success"
+          posthogEvent="main_landing_email_submitted"
+          posthogProps={{ page: "main-landing" }}
+        />
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits-section">
+      <h2 class="benefits-heading">{benefitsHeading}</h2>
+      <PillarGrid>
+        {
+          pillars.map((pillar) => (
+            <PillarCard
+              title={pillar.title}
+              description={pillar.description}
+              isBonus={pillar.isBonus}
+            />
+          ))
+        }
+      </PillarGrid>
+    </div>
+  </VerticalLandingLayout>
+</Layout>
+
+<style is:global>
+  @import "../styles/landing-shared.css";
+
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .branding {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .landing-h1 {
+    margin: 0;
+    max-width: 900px;
+  }
+
+  .landing-subheadline {
+    margin: 0;
+    max-width: 700px;
+  }
+
+  .form-container {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .benefits-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .benefits-heading {
+    margin: 0;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  @media (max-width: 980px) {
+    .hero-section {
+      gap: 1.25rem;
+    }
+
+    .branding {
+      font-size: 0.8rem;
+    }
+
+    .form-container {
+      max-width: 100%;
+    }
+
+    .benefits-section {
+      gap: 2rem;
+    }
+
+    .benefits-heading {
+      font-size: clamp(1.5rem, 5vw, 1.75rem);
+    }
+  }
+</style>
