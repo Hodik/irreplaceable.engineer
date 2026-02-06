@@ -97,6 +97,39 @@ import setupZip from "../assets/ai-setup.zip";
               <span class="copied-text">Copied!</span>
             </button>
           </div>
+
+          <div class="command-box">
+            <h3>OpenCode</h3>
+            <div class="command-display">
+              <code
+                >npx degit Hodik/ai-setup/AGENTS.md AGENTS.md && npx degit
+                Hodik/ai-setup/.opencode .opencode && npx degit Hodik/ai-setup/docs
+                docs</code
+              >
+            </div>
+            <button
+              class="copy-btn"
+              data-copy="npx degit Hodik/ai-setup/AGENTS.md AGENTS.md && npx degit Hodik/ai-setup/.opencode .opencode && npx degit Hodik/ai-setup/docs docs"
+            >
+              <svg
+                class="copy-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                ></path>
+              </svg>
+              <span class="copy-text">Copy Command</span>
+              <span class="copied-text">Copied!</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -315,7 +348,7 @@ import setupZip from "../assets/ai-setup.zip";
 
   @media (min-width: 768px) {
     .command-boxes {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
