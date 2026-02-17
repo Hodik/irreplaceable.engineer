@@ -1,0 +1,119 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  photo: ImageMetadata;
+  name: string;
+  title: string;
+  quote: string;
+}
+
+const { photo, name, title, quote } = Astro.props;
+---
+
+<div class="founder-wrapper">
+  <div class="founder-photo">
+    <Image
+      src={photo}
+      alt={name}
+      width={600}
+      quality={90}
+      format="webp"
+    />
+  </div>
+  <div class="founder-info">
+    <p class="founder-label">Built by</p>
+    <h3 class="founder-name">{name}</h3>
+    <p class="founder-title">{title}</p>
+    <p class="founder-quote">"{quote}"</p>
+  </div>
+</div>
+
+<style>
+  .founder-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .founder-photo {
+    flex: 0 0 auto;
+    max-width: 350px;
+  }
+
+  .founder-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  }
+
+  .founder-info {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .founder-label {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .founder-name {
+    margin: 0 0 0.5rem 0;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    line-height: 1.1;
+  }
+
+  .founder-title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+    color: var(--muted-foreground);
+  }
+
+  .founder-quote {
+    margin: 0;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-style: italic;
+    color: var(--foreground);
+    line-height: 1.5;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--primary);
+  }
+
+  @media (max-width: 700px) {
+    .founder-wrapper {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .founder-photo {
+      max-width: 280px;
+    }
+
+    .founder-photo img {
+      max-height: 380px;
+    }
+
+    .founder-quote {
+      padding-left: 0;
+      border-left: none;
+      border-top: 3px solid var(--primary);
+      padding-top: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+interface Props {
+  price: string;
+  period?: string;
+  features: string[];
+  ctaText: string;
+  ctaUrl: string;
+}
+
+const { price, period = "mo", features, ctaText, ctaUrl } = Astro.props;
+---
+
+<div class="pricing-card">
+  <div class="price-display">
+    <span class="price-amount">{price}</span>
+    <span class="price-period">/{period}</span>
+  </div>
+
+  <ul class="features-list">
+    {features.map((feature) => (
+      <li>
+        <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+        </svg>
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <a href={ctaUrl} class="cta-button">
+    {ctaText}
+  </a>
+
+  <p class="cancel-note">Cancel anytime.</p>
+
+  <div class="guarantee-box">
+    <div class="guarantee-header">
+      <svg class="shield-icon" width="24" height="24" viewBox="0 0 20 20" fill="none">
+        <path d="M10 1L3 4v5c0 4.5 3 8.5 7 9.5 4-1 7-5 7-9.5V4l-7-3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="guarantee-title">"Complete the Book" Guarantee</span>
+    </div>
+    <p class="guarantee-description">
+      Finish all assessments for your first book. If you don't feel it was worth it, get a full refund.
+    </p>
+  </div>
+</div>
+
+<style>
+  .pricing-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .pricing-card * {
+    box-sizing: border-box;
+  }
+
+  .price-display {
+    margin-bottom: 2rem;
+  }
+
+  .price-amount {
+    font-size: clamp(3rem, 8vw, 4rem);
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    line-height: 1;
+  }
+
+  .price-period {
+    font-size: 1.25rem;
+    color: var(--muted-foreground);
+    font-family: var(--font-sans);
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    text-align: left;
+  }
+
+  .features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .features-list li:last-child {
+    border-bottom: none;
+  }
+
+  .check-icon {
+    flex-shrink: 0;
+    color: var(--primary);
+    margin-top: 0.1rem;
+  }
+
+  .cta-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.1rem 2rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .cta-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  .cancel-note {
+    margin: 1rem 0 1.5rem 0;
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
+  }
+
+  .guarantee-box {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: left;
+  }
+
+  .guarantee-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .guarantee-title {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .guarantee-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+  }
+
+  .shield-icon {
+    flex-shrink: 0;
+    color: var(--primary);
+  }
+
+  @media (max-width: 980px) {
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

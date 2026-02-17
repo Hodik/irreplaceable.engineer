@@ -1,0 +1,443 @@
+---
+import Layout from "../layouts/Layout.astro";
+import VerticalLandingLayout from "../components/landing/VerticalLandingLayout.astro";
+import SectionHeader from "../components/lab/SectionHeader.astro";
+import TerminalTestRunner from "../components/lab/TerminalTestRunner.astro";
+import ProcessTimeline from "../components/lab/ProcessTimeline.astro";
+import BlockQuote from "../components/lab/BlockQuote.astro";
+import ComparisonTable from "../components/lab/ComparisonTable.astro";
+import FounderCard from "../components/lab/FounderCard.astro";
+import PricingCard from "../components/lab/PricingCard.astro";
+import FAQAccordion from "../components/lab/FAQAccordion.astro";
+import labPreview from "../assets/lab_preview.png";
+import founderPhoto from "../assets/me.PNG";
+import "../styles/landing-shared.css";
+
+const checkoutUrl = "https://whop.com/checkout/plan_eKxbzNBf6ERFb";
+
+const failingTests = [
+  {
+    path: "tests/career/test_learning.py",
+    name: "test_finish_technical_books",
+    message:
+      "You've started Designing Data-Intensive Applications twice. Never finished it. Can't remember what you read.",
+  },
+  {
+    path: "tests/career/test_decisions.py",
+    name: "test_architectural_speed",
+    message:
+      "You watch senior engineers make on-point design decisions in seconds — decisions that would take you a full day of Googling.",
+  },
+  {
+    path: "tests/career/test_compensation.py",
+    name: "test_salary_gap",
+    message:
+      "You know the gap between your salary and a senior engineer's is $50K-$100K. You just can't figure out how to get there.",
+  },
+  {
+    path: "tests/career/test_growth.py",
+    name: "test_learn_on_job",
+    message:
+      "You tell yourself you'll learn on the job. But your job needs you to ship features, not build foundational skills.",
+  },
+  {
+    path: "tests/career/test_future.py",
+    name: "test_ai_differentiation",
+    message:
+      "Now AI is writing the kind of code you got paid to write. And you don't know what to double down on to stay valuable.",
+  },
+];
+
+const passingTests = [
+  {
+    path: "tests/career/test_ownership.py",
+    name: "test_system_design",
+    message:
+      "You've naturally transitioned from implementing features to designing and owning systems.",
+  },
+  {
+    path: "tests/career/test_skills.py",
+    name: "test_future_proof",
+    message:
+      "You're continuously improving fundamental, future-proof engineering skills that are amplified by new technology, not replaced by it.",
+  },
+  {
+    path: "tests/career/test_impact.py",
+    name: "test_cross_team_value",
+    message:
+      "The value you provide to your company is recognized across teams, not just within your immediate scope.",
+  },
+  {
+    path: "tests/career/test_confidence.py",
+    name: "test_architectural_decisions",
+    message:
+      "You're confident in your knowledge and your ability to make sound architectural decisions, review code, and propose well-reasoned solutions.",
+  },
+  {
+    path: "tests/career/test_compensation.py",
+    name: "test_market_value",
+    message:
+      "You have access to significantly better compensation options, both within your current company and on the open market.",
+  },
+];
+
+const processSteps = [
+  {
+    number: 1,
+    title: "Assess your gaps before you read",
+    description:
+      "Before every book cycle, you complete a short assessment designed to surface <strong>your actual knowledge gaps</strong>. Not what you <em>think</em> you know — but what you can explain, justify, and apply. The result is a clear signal of which concepts deserve your attention, which chapters matter most for you, and what to actively look for while reading.",
+  },
+  {
+    number: 2,
+    title: "Follow a curated, book-driven curriculum",
+    description:
+      "You don't choose random books or skim what's popular. Each cycle is built around a <strong>carefully selected backend book</strong>. The curriculum is language-agnostic and principle-driven, so it stays valuable across stacks and trends.",
+  },
+  {
+    number: 3,
+    title: "Practice and reinforce through real engineering work",
+    description:
+      "Reading alone doesn't build judgment. Each cycle includes <strong>handcrafted reinforcement exercises</strong> that require fundamental understanding and real application: reviewing code and identifying architectural risks, writing or critiquing high-level designs, refactoring designs to handle scale, failures, or constraints, and defending trade-offs in ambiguous scenarios.",
+  },
+  {
+    number: 4,
+    title: "Share, compare, and absorb better thinking",
+    description:
+      "You share your strongest insights and decisions with a community of curious backend engineers who care about mastery. You'll see how others approached the same problem, absorb alternative mental models, and refine your own thinking through discussion.",
+  },
+  {
+    number: 5,
+    title: "Close the gap and move forward",
+    description:
+      "Each cycle ends with clarity: what you've improved, what still needs work, and which gap to close next. You don't \"finish a book and move on.\" You <strong>compound understanding</strong>, cycle by cycle.",
+  },
+];
+
+const comparisonRows = [
+  {
+    goal: "Passing interviews and grinding algorithmic problems",
+    solution: "LeetCode",
+  },
+  {
+    goal: "Learning a programming language from scratch",
+    solution: "boot.dev",
+  },
+  {
+    goal: "Building deep theoretical understanding",
+    solution: "Technical books",
+  },
+  {
+    goal: "Re-implementing systems to learn internals",
+    solution: "CodeCrafters",
+  },
+  {
+    goal: "Developing senior-level judgment, taste, and architectural thinking",
+    solution: "Irreplaceable Engineer Lab",
+    highlighted: true,
+  },
+];
+
+const pricingFeatures = [
+  "Curated, sequenced book curriculum",
+  "Knowledge gap diagnostic before every cycle",
+  "Detailed reading maps — what to read deeply, skim, or skip",
+  "Handcrafted weekly assessments — code reviews, HLDs, refactoring challenges",
+  "Progress tracking that reveals your blind spots",
+  "6-week structured reading rhythm per book",
+  "Private community of serious backend engineers",
+  "Weekly guided discussions",
+  "Growing library of completed books and assessments",
+];
+
+const faqItems = [
+  {
+    question: "What if I'm too busy to keep up with the reading schedule?",
+    answer:
+      "The curriculum is designed for working engineers. It's 30 minutes of reading per day and one assessment per week. If you fall behind, you can pick up where you left off in the next cycle. This isn't a bootcamp — it's built to fit around a full-time engineering job.",
+  },
+  {
+    question: "What skill level is this for?",
+    answer:
+      "Mid-level backend engineers with 2-5 years of experience who want to build the depth and judgment to reach senior and beyond.",
+  },
+  {
+    question: "Is this tied to a specific language or tech stack?",
+    answer:
+      "No. The curriculum is language-agnostic and principle-driven. You'll study code quality, architectural tradeoffs, data modeling, and engineering fundamentals that apply regardless of whether you write Go, Java, Python, or anything else.",
+  },
+  {
+    question: "How is this different from just reading books on my own?",
+    answer:
+      "You've probably already tried that. The Lab adds what reading alone is missing — a knowledge gap diagnostic before you start, a reading map so you skip the filler, handcrafted assessments that put knowledge to practice, and a community of engineers going through the same material. Most engineers never finish technical books, missing the massive value they offer. The Lab is designed to make sure you do — and that you actually retain what you read.",
+  },
+  {
+    question: "What kind of assessments are these?",
+    answer:
+      "You'll review real code for design flaws, write and critique high-level designs, make refactoring decisions with genuine tradeoffs, and defend your reasoning. The same kind of thinking that senior and staff engineers do daily.",
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer: "Yes. One click.",
+  },
+  {
+    question:
+      "What if I finish the assessments and don't feel it was worth it?",
+    answer:
+      "Full refund. That's the \"Complete the Book\" Guarantee — finish all assessments for your first book, and if you genuinely feel it wasn't worth it, you get your money back.",
+  },
+];
+---
+
+<Layout>
+  <VerticalLandingLayout>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <p class="eyebrow">THE LAB</p>
+        <h1 class="hero-headline">
+          Build backend judgment fewer engineers have, more companies need.
+        </h1>
+        <p class="hero-subheadline">
+          Develop foundational backend skills through a structured, book-based
+          curriculum and become the kind of engineer companies can’t afford to
+          lose.
+        </p>
+        <a href="#pricing" class="hero-cta"> Join now </a>
+      </div>
+      <div class="hero-visual">
+        <div class="screenshot-wrapper">
+          <img
+            src={labPreview.src}
+            alt="IE Lab assessment platform showing a code review exercise"
+            class="hero-screenshot"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Before/After Terminal Comparison -->
+    <section class="terminal-comparison-section">
+      <SectionHeader title="The transformation" centered={true} />
+      <div class="terminal-comparison">
+        <div class="terminal-column">
+          <span class="terminal-label">Sounds familiar?</span>
+          <TerminalTestRunner mode="failing" tests={failingTests} />
+        </div>
+        <div class="terminal-column">
+          <span class="terminal-label">After a year inside the Lab</span>
+          <TerminalTestRunner mode="passing" tests={passingTests} />
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="process-section">
+      <SectionHeader title="How the Lab Works" centered={true} />
+      <ProcessTimeline steps={processSteps} />
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+      <SectionHeader title="Is the Lab for you?" centered={true} />
+      <ComparisonTable rows={comparisonRows} />
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section">
+      <FounderCard
+        photo={founderPhoto}
+        name="Denis"
+        title="Senior Backend Software Engineer"
+        quote="This learning system got me to senior level at 22 y.o."
+      />
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+      <SectionHeader
+        title="Acquire the engineering depth companies pay senior engineers for."
+        centered={true}
+      />
+      <PricingCard
+        price="$49"
+        features={pricingFeatures}
+        ctaText="Join Now"
+        ctaUrl={checkoutUrl}
+      />
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <SectionHeader title="Frequently Asked Questions" centered={true} />
+      <FAQAccordion items={faqItems} />
+    </section>
+  </VerticalLandingLayout>
+</Layout>
+
+<style>
+  /* ==========================================================================
+     Base (Mobile-First)
+     ========================================================================== */
+
+  /* Section Spacing */
+  .process-section,
+  .comparison-section,
+  .founder-section,
+  .pricing-section,
+  .faq-section {
+    padding: var(--space-xl) 0;
+  }
+
+  /* Hero Section - Mobile Base */
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    width: 100%;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+
+  .screenshot-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+
+  .hero-screenshot {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-md) 0;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--muted-foreground);
+  }
+
+  .hero-headline {
+    margin: 0 0 var(--space-lg) 0;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--foreground);
+  }
+
+  .hero-subheadline {
+    margin: 0 0 var(--space-xl) 0;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    line-height: 1.7;
+    color: var(--muted-foreground);
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: var(--space-md) var(--space-xl);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .hero-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-0.125rem);
+  }
+
+  /* Terminal Section - Mobile Base */
+  .terminal-comparison-section {
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  .terminal-comparison {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .terminal-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0; /* Allows grid children to shrink below content size */
+  }
+
+  .terminal-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    color: var(--foreground);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ==========================================================================
+     Tablet/Small Desktop (min-width: 768px)
+     ========================================================================== */
+  @media (min-width: 768px) {
+    .hero-section {
+      display: grid;
+      grid-template-columns: 1.3fr 2fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .hero-content {
+      text-align: left;
+    }
+
+    .hero-visual {
+      perspective: 1000px;
+    }
+
+    .screenshot-wrapper {
+      transform: rotateY(-6deg) rotateX(2deg);
+      transition: transform 0.4s ease;
+      border: none;
+      border-radius: 12px;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 10px 20px -5px rgba(0, 0, 0, 0.12),
+        0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .screenshot-wrapper:hover {
+      transform: rotateY(-3deg) rotateX(1deg);
+    }
+  }
+
+  /* ==========================================================================
+     Large Desktop (min-width: 1100px)
+     ========================================================================== */
+  @media (min-width: 1100px) {
+    .hero-section {
+      grid-template-columns: 1.3fr 2fr;
+      gap: 5rem;
+    }
+
+    .terminal-comparison {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

@@ -12,17 +12,18 @@ import "../../styles/global.css";
   .vertical-landing {
     min-height: 100svh;
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem clamp(1.25rem, 4vw, 2rem);
+    max-width: 75rem; /* 1200px */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 4rem;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 768px) {
     .vertical-landing {
-      padding: 2rem 1.25rem;
+      padding: 2rem 1rem;
       gap: 3rem;
     }
   }

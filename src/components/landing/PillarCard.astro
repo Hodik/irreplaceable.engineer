@@ -17,54 +17,53 @@ const { title, description, isBonus = false } = Astro.props;
 <style>
   .pillar-card {
     position: relative;
-    background: rgba(15, 15, 16, 0.98);
+    background: var(--card);
     border-radius: 16px;
     padding: 2rem;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.06),
-      0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .pillar-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   .pillar-card.bonus {
-    border: 2px solid var(--accent);
-    box-shadow:
-      0 0 0 1px var(--accent),
-      0 16px 40px rgba(31, 79, 255, 0.2),
-      0 8px 24px rgba(106, 61, 240, 0.15);
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 20px rgba(14, 14, 14, 0.1);
   }
 
   .bonus-badge {
     position: absolute;
     top: -12px;
     left: 1.5rem;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-    color: white;
+    background: var(--primary);
+    color: var(--primary-foreground);
     font-size: 0.75rem;
     font-weight: 700;
+    font-family: var(--font-sans);
     letter-spacing: 0.05em;
     padding: 0.35rem 0.75rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(31, 79, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(14, 14, 14, 0.15);
   }
 
   .pillar-card h3 {
     margin: 0 0 1rem 0;
     font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: 600;
+    font-family: var(--font-sans);
     line-height: 1.3;
-    color: var(--text);
+    color: var(--card-foreground);
   }
 
   .pillar-card p {
     margin: 0;
     font-size: clamp(0.95rem, 1.5vw, 1.05rem);
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--muted-foreground);
   }
 
   @media (max-width: 980px) {

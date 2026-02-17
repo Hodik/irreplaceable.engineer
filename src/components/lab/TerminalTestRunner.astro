@@ -1,0 +1,438 @@
+---
+interface TestItem {
+  path: string;
+  name: string;
+  message: string;
+}
+
+interface Props {
+  mode: "failing" | "passing";
+  tests: TestItem[];
+}
+
+const { mode, tests } = Astro.props;
+
+const isFailing = mode === "failing";
+const statusText = isFailing ? "FAILED" : "PASSED";
+const summaryText = isFailing
+  ? `${tests.length} failed`
+  : `${tests.length} passed`;
+const summaryTime = isFailing ? "2.34s" : "1.42s";
+---
+
+<div class={`terminal terminal--${mode}`}>
+  <!-- Glow effect behind terminal -->
+  <div class="terminal-glow"></div>
+
+  <div class="terminal-frame">
+    <div class="terminal-header">
+      <div class="traffic-lights">
+        <span class="traffic-light red">
+          <span class="traffic-light-shine"></span>
+        </span>
+        <span class="traffic-light yellow">
+          <span class="traffic-light-shine"></span>
+        </span>
+        <span class="traffic-light green">
+          <span class="traffic-light-shine"></span>
+        </span>
+      </div>
+      <div class="traffic-lights-spacer"></div>
+    </div>
+
+    <div class="terminal-body">
+      <!-- Scanline overlay for CRT effect -->
+      <div class="scanlines"></div>
+
+      <div class="test-list">
+        {
+          tests.map((test) => (
+            <div class="test-card">
+              <div class="test-header">
+                <span class="test-path">
+                  {test.path}::<span class="test-name">{test.name}</span>
+                </span>
+                <span
+                  class={`test-status ${mode === "failing" ? "failed" : "passed"}`}
+                >
+                  {statusText}
+                </span>
+              </div>
+              <div class="test-message">{test.message}</div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="terminal-summary">
+        <div class="summary-line"></div>
+        <div class="summary-text">
+          <span
+            class={`summary-count ${mode === "failing" ? "failed" : "passed"}`}
+          >
+            {summaryText}
+          </span>
+          <span class="summary-time">in {summaryTime}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .terminal {
+    position: relative;
+    width: 100%;
+    min-width: 0; /* Allow shrinking in grid/flex context */
+    margin: 0 auto;
+  }
+
+  /* Ambient glow behind the terminal - contained within parent */
+  .terminal-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    opacity: 0.5;
+    filter: blur(2rem);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .terminal--failing .terminal-glow {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(241, 76, 76, 0.3) 0%,
+      transparent 70%
+    );
+  }
+
+  .terminal--passing .terminal-glow {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(35, 209, 139, 0.25) 0%,
+      transparent 70%
+    );
+  }
+
+  .terminal:hover .terminal-glow {
+    opacity: 0.7;
+  }
+
+  /* Main terminal frame with depth */
+  .terminal-frame {
+    position: relative;
+    background: #1a1a1a;
+    border-radius: 0.75rem;
+    overflow: hidden; /* This is correct - clips content inside the frame, not shadows */
+    min-width: 0;
+    /* Layered shadows for depth */
+    box-shadow:
+      /* Inner highlight at top */
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      /* Subtle border */ 0 0 0 1px rgba(255, 255, 255, 0.1),
+      /* Close shadow */ 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2),
+      /* Medium shadow */ 0 0.5rem 1rem rgba(0, 0, 0, 0.2),
+      /* Far shadow */ 0 1.5rem 3rem rgba(0, 0, 0, 0.25),
+      /* Deepest shadow */ 0 3rem 5rem rgba(0, 0, 0, 0.2);
+  }
+
+  .terminal--failing .terminal-frame {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 0 1px rgba(241, 76, 76, 0.2),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.2),
+      0 0.5rem 1rem rgba(0, 0, 0, 0.2),
+      0 1.5rem 3rem rgba(0, 0, 0, 0.25),
+      0 3rem 5rem rgba(0, 0, 0, 0.2),
+      0 0 3.75rem rgba(241, 76, 76, 0.1);
+  }
+
+  .terminal--passing .terminal-frame {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 0 1px rgba(35, 209, 139, 0.2),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.2),
+      0 0.5rem 1rem rgba(0, 0, 0, 0.2),
+      0 1.5rem 3rem rgba(0, 0, 0, 0.25),
+      0 3rem 5rem rgba(0, 0, 0, 0.2),
+      0 0 3.75rem rgba(35, 209, 139, 0.08);
+  }
+
+  /* Header with realistic chrome */
+  .terminal-header {
+    background: linear-gradient(180deg, #4a4a4a 0%, #3d3d3d 50%, #2d2d2d 100%);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #1a1a1a;
+    /* Subtle top highlight */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .traffic-lights {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .traffic-lights-spacer {
+    width: 3.25rem;
+    flex-shrink: 0;
+  }
+
+  .traffic-light {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    position: relative;
+    /* 3D effect */
+    box-shadow:
+      inset 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.3),
+      0 1px 0.125rem rgba(0, 0, 0, 0.2);
+  }
+
+  .traffic-light-shine {
+    position: absolute;
+    top: 0.125rem;
+    left: 0.1875rem;
+    width: 0.3125rem;
+    height: 0.1875rem;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      transparent 100%
+    );
+    border-radius: 50%;
+  }
+
+  .traffic-light.red {
+    background: linear-gradient(180deg, #ff6b6b 0%, #ff5f57 50%, #e04a42 100%);
+  }
+
+  .traffic-light.yellow {
+    background: linear-gradient(180deg, #ffcf4a 0%, #febc2e 50%, #e5a91f 100%);
+  }
+
+  .traffic-light.green {
+    background: linear-gradient(180deg, #4ade80 0%, #28c840 50%, #1fb835 100%);
+  }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    color: #9d9d9d;
+    font-size: 0.8125rem;
+    font-family: var(--font-mono);
+    text-shadow: 0 1px 0.125rem rgba(0, 0, 0, 0.3);
+  }
+
+  .terminal-body {
+    position: relative;
+    padding: 1.25rem;
+    /* Subtle gradient for depth */
+    background: linear-gradient(180deg, #1a1a1a 0%, #161616 100%);
+  }
+
+  /* Subtle CRT scanlines */
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 0.125rem,
+      rgba(0, 0, 0, 0.1) 0.125rem,
+      rgba(0, 0, 0, 0.1) 0.25rem
+    );
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .test-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .test-card {
+    background: linear-gradient(180deg, #282828 0%, #222222 100%);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #333;
+    /* Card depth */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .test-card:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+  }
+
+  .test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(180deg, #2e2e2e 0%, #292929 100%);
+    border-bottom: 1px solid #333;
+    gap: 0.75rem;
+  }
+
+  .test-path {
+    color: #7ec8e8;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Subtle text glow */
+    text-shadow: 0 0 0.625rem rgba(126, 200, 232, 0.3);
+  }
+
+  .test-name {
+    color: #9cdcfe;
+  }
+
+  .test-status {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .test-status.failed {
+    background: rgba(241, 76, 76, 0.15);
+    color: #f14c4c;
+    border: 1px solid rgba(241, 76, 76, 0.3);
+    /* Glow effect */
+    box-shadow:
+      0 0 0.625rem rgba(241, 76, 76, 0.2),
+      inset 0 0 0.625rem rgba(241, 76, 76, 0.1);
+    text-shadow: 0 0 0.5rem rgba(241, 76, 76, 0.5);
+  }
+
+  .test-status.passed {
+    background: rgba(35, 209, 139, 0.15);
+    color: #23d18b;
+    border: 1px solid rgba(35, 209, 139, 0.3);
+    /* Glow effect */
+    box-shadow:
+      0 0 0.625rem rgba(35, 209, 139, 0.2),
+      inset 0 0 0.625rem rgba(35, 209, 139, 0.1);
+    text-shadow: 0 0 0.5rem rgba(35, 209, 139, 0.5);
+  }
+
+  .test-message {
+    padding: 1rem 1.25rem;
+    color: #e0e0e0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    font-family: var(--font-sans);
+  }
+
+  .terminal--failing .test-message {
+    border-left: 0.1875rem solid #f14c4c;
+    box-shadow: inset 0.1875rem 0 0.75rem -0.1875rem rgba(241, 76, 76, 0.15);
+  }
+
+  .terminal--passing .test-message {
+    border-left: 0.1875rem solid #23d18b;
+    box-shadow: inset 0.1875rem 0 0.75rem -0.1875rem rgba(35, 209, 139, 0.15);
+  }
+
+  .terminal-summary {
+    position: relative;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+
+  .summary-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #444 20%,
+      #444 80%,
+      transparent
+    );
+    margin-bottom: 0.75rem;
+  }
+
+  .summary-text {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .summary-count {
+    font-weight: 700;
+  }
+
+  .summary-count.failed {
+    color: #f14c4c;
+    text-shadow: 0 0 0.625rem rgba(241, 76, 76, 0.5);
+  }
+
+  .summary-count.passed {
+    color: #23d18b;
+    text-shadow: 0 0 0.625rem rgba(35, 209, 139, 0.5);
+  }
+
+  .summary-time {
+    color: #6e6e6e;
+  }
+
+  @media (max-width: 40rem) {
+    .terminal-frame {
+      border-radius: 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 1rem;
+    }
+
+    .test-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.625rem 0.875rem;
+    }
+
+    .test-path {
+      font-size: 0.6875rem;
+      white-space: normal;
+      word-break: break-all;
+    }
+
+    .test-message {
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .terminal-title {
+      display: none;
+    }
+
+    .traffic-lights-spacer {
+      display: none;
+    }
+
+    .scanlines {
+      display: none;
+    }
+  }
+</style>

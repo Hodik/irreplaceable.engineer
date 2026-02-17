@@ -1,0 +1,173 @@
+---
+interface TableRow {
+  goal: string;
+  solution: string;
+  highlighted?: boolean;
+}
+
+interface Props {
+  rows: TableRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="comparison-wrapper">
+  <!-- Desktop Table -->
+  <table class="comparison-table desktop-only">
+    <thead>
+      <tr>
+        <th>If your goal is...</th>
+        <th>Use this</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class:list={{ highlighted: row.highlighted }}>
+          <td>{row.goal}</td>
+          <td>{row.solution}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <!-- Mobile Cards -->
+  <div class="comparison-cards mobile-only">
+    {rows.map((row) => (
+      <div class:list={["comparison-card", { highlighted: row.highlighted }]}>
+        <div class="card-goal">{row.goal}</div>
+        <div class="card-arrow">→</div>
+        <div class="card-solution">{row.solution}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .comparison-wrapper {
+    max-width: 43.75rem;
+    margin: 0 auto;
+  }
+
+  /* Desktop Table */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+  }
+
+  .comparison-table th {
+    text-align: left;
+    padding: var(--space-md) var(--space-lg);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 0.125rem solid var(--border);
+  }
+
+  .comparison-table td {
+    padding: var(--space-lg);
+    font-size: 1rem;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table tr.highlighted {
+    background: var(--primary);
+  }
+
+  .comparison-table tr.highlighted td {
+    color: var(--primary-foreground);
+    font-weight: 600;
+    border-bottom-color: transparent;
+  }
+
+  .comparison-table tr.highlighted td:first-child {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+  }
+
+  .comparison-table tr.highlighted td:last-child {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  /* Mobile Cards */
+  .comparison-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .comparison-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-sans);
+  }
+
+  .comparison-card.highlighted {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .comparison-card.highlighted .card-goal,
+  .comparison-card.highlighted .card-solution,
+  .comparison-card.highlighted .card-arrow {
+    color: var(--primary-foreground);
+  }
+
+  .comparison-card.highlighted .card-solution {
+    font-weight: 600;
+  }
+
+  .card-goal {
+    flex: 1;
+    font-size: 0.95rem;
+    color: var(--foreground);
+  }
+
+  .card-arrow {
+    flex-shrink: 0;
+    color: var(--muted-foreground);
+    font-weight: 600;
+  }
+
+  .card-solution {
+    flex: 1;
+    font-size: 0.95rem;
+    color: var(--foreground);
+    text-align: right;
+  }
+
+  /* Always show table, hide cards */
+  .desktop-only {
+    display: table;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  /* Mobile table adjustments */
+  @media (max-width: 43.75rem) {
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--space-md);
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+      width: 60%;
+    }
+  }
+</style>

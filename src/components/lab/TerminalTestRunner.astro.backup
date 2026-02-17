@@ -1,0 +1,282 @@
+---
+interface TestItem {
+  path: string;
+  name: string;
+  message: string;
+}
+
+interface Props {
+  mode: "failing" | "passing";
+  tests: TestItem[];
+}
+
+const { mode, tests } = Astro.props;
+
+const isFailing = mode === "failing";
+const statusText = isFailing ? "FAILED" : "PASSED";
+const summaryText = isFailing
+  ? `${tests.length} failed`
+  : `${tests.length} passed`;
+const summaryTime = isFailing ? "2.34s" : "1.42s";
+const terminalTitle = isFailing
+  ? "pytest — tests/career/"
+  : "pytest — tests/career/";
+---
+
+<div class={`terminal terminal--${mode}`}>
+  <div class="terminal-header">
+    <div class="traffic-lights">
+      <span class="traffic-light red"></span>
+      <span class="traffic-light yellow"></span>
+      <span class="traffic-light green"></span>
+    </div>
+    <span class="terminal-title">{terminalTitle}</span>
+    <div class="traffic-lights-spacer"></div>
+  </div>
+
+  <div class="terminal-body">
+    <div class="test-list">
+      {
+        tests.map((test) => (
+          <div class="test-card">
+            <div class="test-header">
+              <span class="test-path">
+                {test.path}::<span class="test-name">{test.name}</span>
+              </span>
+              <span class={`test-status ${mode === "failing" ? "failed" : "passed"}`}>
+                {statusText}
+              </span>
+            </div>
+            <div class="test-message">{test.message}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="terminal-summary">
+      <div class="summary-line"></div>
+      <div class="summary-text">
+        <span class={`summary-count ${mode === "failing" ? "failed" : "passed"}`}>
+          {summaryText}
+        </span>
+        <span class="summary-time">in {summaryTime}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .terminal {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .terminal-header {
+    background: linear-gradient(180deg, #3d3d3d 0%, #2d2d2d 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .traffic-lights {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .traffic-lights-spacer {
+    width: 52px;
+    flex-shrink: 0;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .traffic-light.red {
+    background: #ff5f57;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .traffic-light.yellow {
+    background: #febc2e;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .traffic-light.green {
+    background: #28c840;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    color: #9d9d9d;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+
+  .terminal-body {
+    padding: 20px;
+  }
+
+  .test-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .test-card {
+    background: #252525;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+  }
+
+  .test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #2a2a2a;
+    border-bottom: 1px solid #333;
+    gap: 12px;
+  }
+
+  .test-path {
+    color: #7ec8e8;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .test-name {
+    color: #9cdcfe;
+  }
+
+  .test-status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .test-status.failed {
+    background: rgba(241, 76, 76, 0.15);
+    color: #f14c4c;
+    border: 1px solid rgba(241, 76, 76, 0.3);
+  }
+
+  .test-status.passed {
+    background: rgba(35, 209, 139, 0.15);
+    color: #23d18b;
+    border: 1px solid rgba(35, 209, 139, 0.3);
+  }
+
+  .test-message {
+    padding: 16px 20px;
+    color: #e0e0e0;
+    font-size: 15px;
+    line-height: 1.65;
+    font-family: var(--font-sans);
+  }
+
+  .terminal--failing .test-message {
+    border-left: 3px solid #f14c4c;
+  }
+
+  .terminal--passing .test-message {
+    border-left: 3px solid #23d18b;
+  }
+
+  .terminal-summary {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .summary-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #444 20%,
+      #444 80%,
+      transparent
+    );
+    margin-bottom: 12px;
+  }
+
+  .summary-text {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .summary-count {
+    font-weight: 700;
+  }
+
+  .summary-count.failed {
+    color: #f14c4c;
+  }
+
+  .summary-count.passed {
+    color: #23d18b;
+  }
+
+  .summary-time {
+    color: #6e6e6e;
+  }
+
+  @media (max-width: 640px) {
+    .terminal {
+      border-radius: 8px;
+    }
+
+    .terminal-body {
+      padding: 16px;
+    }
+
+    .test-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 14px;
+    }
+
+    .test-path {
+      font-size: 11px;
+      white-space: normal;
+      word-break: break-all;
+    }
+
+    .test-message {
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    .terminal-title {
+      display: none;
+    }
+
+    .traffic-lights-spacer {
+      display: none;
+    }
+  }
+</style>

@@ -26,6 +26,7 @@ import Layout from "../layouts/Layout.astro";
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    background: var(--background);
   }
 
   .success-content {
@@ -38,7 +39,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .checkmark {
-    color: var(--accent);
+    color: var(--primary);
     animation: scaleIn 0.5s ease-out;
   }
 
@@ -57,14 +58,15 @@ import Layout from "../layouts/Layout.astro";
     margin: 0;
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 600;
-    color: var(--text);
+    font-family: var(--font-sans);
+    color: var(--foreground);
   }
 
   p {
     margin: 0;
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--muted-foreground);
     max-width: 450px;
   }
 </style>

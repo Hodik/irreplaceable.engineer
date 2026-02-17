@@ -17,18 +17,18 @@ const { heading, class: className = '' } = Astro.props;
     position: relative;
     z-index: 1;
     width: min(420px, 100%);
-    background: rgba(15, 15, 16, 0.98);
+    background: var(--card);
     border-radius: 16px;
     padding: 2rem;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.06),
-      0 30px 80px rgba(31, 79, 255, 0.15),
-      0 16px 40px rgba(106, 61, 240, 0.12);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   }
 
   .form-card h2 {
     margin: 0 0 1rem 0;
     font-size: 1.25rem;
+    font-family: var(--font-sans);
+    color: var(--card-foreground);
   }
 
   @media (min-width: 981px) and (max-width: 1400px) {

@@ -1,0 +1,140 @@
+---
+import TimelineStep from './TimelineStep.astro';
+
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+
+// SVG icons for each step
+const icons = [
+  // 1. Assess gaps - Target/radar scanning icon
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+    <line x1="12" y1="2" x2="12" y2="4"/>
+    <line x1="12" y1="20" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="4" y2="12"/>
+    <line x1="20" y1="12" x2="22" y2="12"/>
+  </svg>`,
+
+  // 2. Follow curriculum - Book with bookmark/compass
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    <path d="M12 6v7l2.5-1.5L17 13V6"/>
+  </svg>`,
+
+  // 3. Practice - Code brackets with gear
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 18 22 12 16 6"/>
+    <polyline points="8 6 2 12 8 18"/>
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M12 8v1"/>
+    <path d="M12 15v1"/>
+    <path d="M9.17 10l-.87-.5"/>
+    <path d="M15.7 14.5l-.87-.5"/>
+    <path d="M9.17 14l-.87.5"/>
+    <path d="M15.7 9.5l-.87.5"/>
+  </svg>`,
+
+  // 4. Share & compare - Connected nodes/network
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="5" cy="6" r="3"/>
+    <circle cx="19" cy="6" r="3"/>
+    <circle cx="12" cy="18" r="3"/>
+    <line x1="7.5" y1="7.5" x2="10" y2="16"/>
+    <line x1="16.5" y1="7.5" x2="14" y2="16"/>
+    <line x1="8" y1="6" x2="16" y2="6"/>
+  </svg>`,
+
+  // 5. Close the gap - Ascending stairs/arrow
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 21h4v-6h4v-4h4v-4h6"/>
+    <polyline points="17 3 21 3 21 7"/>
+    <line x1="14" y1="10" x2="21" y2="3"/>
+  </svg>`,
+];
+---
+
+<div class="process-timeline">
+  <div class="timeline-line" aria-hidden="true"></div>
+
+  <div class="timeline-steps">
+    {steps.map((step, index) => (
+      <TimelineStep
+        number={step.number}
+        title={step.title}
+        description={step.description}
+        icon={icons[index] || icons[0]}
+        position={index % 2 === 0 ? 'left' : 'right'}
+      />
+    ))}
+  </div>
+</div>
+
+<style>
+  .process-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Vertical timeline line */
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--border) 0%,
+      var(--primary) 15%,
+      var(--primary) 85%,
+      var(--border) 100%
+    );
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .timeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Tablet */
+  @media (max-width: 980px) {
+    .process-timeline {
+      max-width: 700px;
+    }
+
+    .timeline-steps {
+      gap: 2.5rem;
+    }
+  }
+
+  /* Mobile - Line on left side */
+  @media (max-width: 700px) {
+    .timeline-line {
+      left: 20px;
+      transform: none;
+    }
+
+    .timeline-steps {
+      gap: 2rem;
+      padding-left: 0;
+    }
+  }
+</style>

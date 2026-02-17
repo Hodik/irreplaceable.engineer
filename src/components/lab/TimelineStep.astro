@@ -1,0 +1,212 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  description: string;
+  icon: string;
+  position: 'left' | 'right';
+}
+
+const { number, title, description, icon, position } = Astro.props;
+---
+
+<div class:list={["timeline-step", position]}>
+  <div class="timeline-icon">
+    <div class="icon-container" set:html={icon} />
+  </div>
+
+  <div class="timeline-node">
+    <span class="node-number">{number}</span>
+  </div>
+
+  <div class="timeline-content">
+    <h3>{title}</h3>
+    <p set:html={description} />
+  </div>
+</div>
+
+<style>
+  .timeline-step {
+    display: grid;
+    grid-template-columns: 1fr 3.5rem 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    position: relative;
+  }
+
+  /* Left position: Icon on left, content on right */
+  .timeline-step.left .timeline-icon {
+    justify-self: center;
+  }
+
+  .timeline-step.left .timeline-content {
+    justify-self: start;
+  }
+
+  /* Right position: Content on left, icon on right */
+  .timeline-step.right {
+    direction: rtl;
+  }
+
+  .timeline-step.right > * {
+    direction: ltr;
+  }
+
+  .timeline-step.right .timeline-icon {
+    justify-self: center;
+  }
+
+  .timeline-step.right .timeline-content {
+    justify-self: end;
+    text-align: right;
+  }
+
+  /* Icon Container */
+  .timeline-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-container {
+    width: clamp(4.5rem, 10vw, 7.5rem);
+    height: clamp(4.5rem, 10vw, 7.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+    border-radius: clamp(0.875rem, 2vw, 1.5rem);
+    box-shadow:
+      0 1px 0.1875rem rgba(0, 0, 0, 0.04),
+      0 0.25rem 0.75rem rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .icon-container:hover {
+    transform: translateY(-0.125rem);
+    box-shadow:
+      0 0.125rem 0.375rem rgba(0, 0, 0, 0.06),
+      0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+  }
+
+  .icon-container :global(svg) {
+    width: clamp(2.25rem, 5vw, 3.5rem);
+    height: clamp(2.25rem, 5vw, 3.5rem);
+    color: var(--primary);
+  }
+
+  /* Timeline Node (Center) */
+  .timeline-node {
+    width: clamp(2.5rem, 5vw, 3.5rem);
+    height: clamp(2.5rem, 5vw, 3.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background);
+    border: 0.125rem solid var(--primary);
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .node-number {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Content */
+  .timeline-content {
+    max-width: 23.75rem;
+  }
+
+  .timeline-content h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    line-height: 1.3;
+  }
+
+  .timeline-content p {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--muted-foreground);
+  }
+
+  .timeline-content p :global(strong) {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .timeline-content p :global(em) {
+    font-style: italic;
+  }
+
+  /* Tablet */
+  @media (max-width: 56.25rem) {
+    .timeline-step {
+      grid-template-columns: 1fr 3rem 1fr;
+      gap: var(--space-lg);
+    }
+
+    .timeline-content {
+      max-width: 20rem;
+    }
+  }
+
+  /* Mobile - Single column layout */
+  @media (max-width: 43.75rem) {
+    .timeline-step {
+      grid-template-columns: 2.5rem 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--space-md) var(--space-lg);
+      direction: ltr !important;
+    }
+
+    .timeline-step.right > * {
+      direction: ltr;
+    }
+
+    .timeline-step.right .timeline-content {
+      text-align: left;
+      justify-self: start;
+    }
+
+    .timeline-node {
+      grid-row: 1 / 3;
+      width: 2.5rem;
+      height: 2.5rem;
+      align-self: start;
+      margin-top: var(--space-sm);
+    }
+
+    .timeline-icon {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: start !important;
+    }
+
+    .icon-container {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 0.875rem;
+    }
+
+    .icon-container :global(svg) {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    .timeline-content {
+      grid-column: 2;
+      grid-row: 2;
+      max-width: 100%;
+      justify-self: start !important;
+    }
+  }
+</style>

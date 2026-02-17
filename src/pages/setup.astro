@@ -279,7 +279,7 @@ import setupZip from "../assets/ai-setup.zip";
   .setup-container {
     width: 100%;
     max-width: 900px;
-    color: var(--text);
+    color: var(--foreground);
   }
 
   .setup-container h1 {
@@ -287,11 +287,12 @@ import setupZip from "../assets/ai-setup.zip";
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
+    font-family: var(--font-sans);
   }
 
   .setup-description {
     text-align: center;
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 1rem;
     margin: 0 0 2rem 0;
   }
@@ -303,13 +304,14 @@ import setupZip from "../assets/ai-setup.zip";
   .option-heading {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text);
+    font-family: var(--font-sans);
+    color: var(--foreground);
     margin: 0 0 1rem 0;
     text-align: center;
   }
 
   .option-description {
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.95rem;
     margin: 0 0 1rem 0;
     text-align: center;
@@ -324,12 +326,13 @@ import setupZip from "../assets/ai-setup.zip";
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: rgba(31, 79, 255, 0.12);
-    border: 1px solid rgba(31, 79, 255, 0.25);
+    background: var(--secondary);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.4rem 0.75rem;
     font-size: 0.875rem;
-    color: var(--accent);
+    font-family: var(--font-sans);
+    color: var(--foreground);
     width: fit-content;
   }
 
@@ -353,35 +356,37 @@ import setupZip from "../assets/ai-setup.zip";
   }
 
   .command-box {
-    background: #0b0b0c;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.25rem;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     min-width: 0;
   }
 
   .command-box:hover {
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
   .command-box h3 {
     margin: 0 0 0.875rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text);
+    font-family: var(--font-sans);
+    color: var(--foreground);
   }
 
   .command-display {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #fafaf8;
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0;
     margin-bottom: 0.875rem;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    scrollbar-color: rgba(14, 14, 14, 0.2) transparent;
     max-width: 100%;
     width: 100%;
   }
@@ -395,15 +400,14 @@ import setupZip from "../assets/ai-setup.zip";
   }
 
   .command-display::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(14, 14, 14, 0.2);
     border-radius: 3px;
   }
 
   .command-display code {
-    font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Fira Mono",
-      "Roboto Mono", monospace;
+    font-family: var(--font-mono);
     font-size: 0.875rem;
-    color: #e0e0e0;
+    color: var(--foreground);
     line-height: 1.5;
     white-space: nowrap;
     display: block;
@@ -418,19 +422,20 @@ import setupZip from "../assets/ai-setup.zip";
     width: 100%;
     padding: 0.75rem 1rem;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    color: var(--text);
+    color: var(--foreground);
     font-size: 0.9rem;
     font-weight: 500;
+    font-family: var(--font-sans);
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
   }
 
   .copy-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.25);
+    background: var(--secondary);
+    border-color: var(--primary);
   }
 
   .copy-btn:active {
@@ -438,9 +443,9 @@ import setupZip from "../assets/ai-setup.zip";
   }
 
   .copy-btn.copied {
-    background: rgba(31, 79, 255, 0.15);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: var(--secondary);
+    border-color: var(--primary);
+    color: var(--primary);
   }
 
   .copy-icon {
@@ -464,9 +469,10 @@ import setupZip from "../assets/ai-setup.zip";
     align-items: center;
     gap: 1rem;
     margin: 2.5rem 0;
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 0.95rem;
     font-weight: 500;
+    font-family: var(--font-sans);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -476,7 +482,7 @@ import setupZip from "../assets/ai-setup.zip";
     content: "";
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--border);
   }
 
   .download-section {
@@ -489,19 +495,20 @@ import setupZip from "../assets/ai-setup.zip";
     align-items: center;
     gap: 0.625rem;
     padding: 0.95rem 1.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--secondary);
+    border: 1px solid var(--border);
     border-radius: 10px;
-    color: var(--text);
+    color: var(--foreground);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
+    font-family: var(--font-sans);
     transition: all 0.2s ease;
   }
 
   .download-zip-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--accent);
+    border-color: var(--primary);
     transform: translateY(-1px);
   }
 
@@ -512,19 +519,20 @@ import setupZip from "../assets/ai-setup.zip";
   .then-section {
     margin-top: 3rem;
     padding-top: 2.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--border);
   }
 
   .then-section h1 {
     margin: 0 0 0.75rem 0;
     font-size: 2rem;
     font-weight: 700;
+    font-family: var(--font-sans);
     text-align: center;
   }
 
   .then-description {
     text-align: center;
-    color: var(--muted);
+    color: var(--muted-foreground);
     font-size: 1rem;
     margin: 0 0 1.5rem 0;
   }
@@ -539,25 +547,22 @@ import setupZip from "../assets/ai-setup.zip";
     align-items: center;
     gap: 0.625rem;
     padding: 1rem 2rem;
-    background: linear-gradient(83deg, var(--accent) 0%, var(--accent-2) 100%);
+    background: var(--primary);
     border: none;
     border-radius: 12px;
-    color: white;
+    color: var(--primary-foreground);
     text-decoration: none;
     font-size: 1.05rem;
     font-weight: 600;
-    box-shadow:
-      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-      0 10px 30px rgba(31, 79, 255, 0.35);
+    font-family: var(--font-sans);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
   }
 
   .download-workflow-btn:hover {
-    opacity: 0.95;
+    opacity: 0.9;
     transform: translateY(-1px);
-    box-shadow:
-      inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-      0 12px 35px rgba(31, 79, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(14, 14, 14, 0.15);
   }
 
   .download-workflow-btn:active {

@@ -34,19 +34,26 @@
 .ml-form-embedContainer input[type="number"] {
   width: 100% !important;
   box-sizing: border-box !important;
-  background: #0b0b0c !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: var(--input) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 10px !important;
   padding: 0.875rem 1rem !important;
-  color: var(--text) !important;
+  color: var(--foreground) !important;
   font-size: 1rem !important;
+  font-family: var(--font-sans) !important;
+}
+
+.ml-form-embedContainer input[type="text"]::placeholder,
+.ml-form-embedContainer input[type="email"]::placeholder,
+.ml-form-embedContainer input[type="number"]::placeholder {
+  color: var(--muted-foreground) !important;
 }
 
 .ml-form-embedContainer input[type="text"]:focus,
 .ml-form-embedContainer input[type="email"]:focus,
 .ml-form-embedContainer input[type="number"]:focus {
-  border-color: rgba(99, 102, 241, 0.8) !important;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(14, 14, 14, 0.1) !important;
 }
 
 /* Button styles */
@@ -56,19 +63,20 @@
   border: 0 !important;
   border-radius: 12px !important;
   padding: 0.95rem 1.25rem !important;
-  color: #fff !important;
+  color: var(--primary-foreground) !important;
   font-weight: 600 !important;
   font-size: 1rem !important;
+  font-family: var(--font-sans) !important;
   cursor: pointer !important;
-  background: linear-gradient(
-    83deg,
-    var(--accent) 0%,
-    var(--accent-2) 100%
-  ) !important;
-  box-shadow:
-    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-    0 10px 30px rgba(31, 79, 255, 0.35) !important;
+  background: var(--primary) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
   width: 100% !important;
+  transition: opacity 0.15s ease !important;
+}
+
+.ml-form-embedContainer button[type="submit"]:hover,
+.ml-form-embedContainer input[type="submit"]:hover {
+  opacity: 0.9 !important;
 }
 
 /* Keep loading button hidden but prevent layout shift */
@@ -84,5 +92,5 @@
 /* Success state styles */
 .ml-form-embedContainer .ml-form-successBody,
 .ml-form-embedContainer .ml-form-successContent {
-  color: var(--text) !important;
+  color: var(--foreground) !important;
 }
