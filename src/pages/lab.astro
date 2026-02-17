@@ -195,6 +195,7 @@ const faqItems = [
     <section class="hero-section">
       <div class="hero-content">
         <p class="eyebrow">THE LAB</p>
+        <span class="scarcity-badge">Limited to 50 engineers</span>
         <h1 class="hero-headline">
           Build backend judgment fewer engineers have, more companies need.
         </h1>
@@ -259,6 +260,7 @@ const faqItems = [
         title="Acquire the engineering depth companies pay senior engineers for."
         centered={true}
       />
+      <span class="scarcity-badge scarcity-badge--pricing">Early access — 50 spots</span>
       <PricingCard
         price="$49"
         features={pricingFeatures}
@@ -279,6 +281,26 @@ const faqItems = [
   /* ==========================================================================
      Base (Mobile-First)
      ========================================================================== */
+
+  /* Scarcity Badge */
+  .scarcity-badge {
+    display: inline-block;
+    margin-bottom: var(--space-md);
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    letter-spacing: 0.03em;
+    color: #fdfdf7;
+    background: #c75b39;
+    border-radius: 6px;
+  }
+
+  .scarcity-badge--pricing {
+    display: block;
+    width: fit-content;
+    margin: 0 auto var(--space-lg) auto;
+  }
 
   /* Section Spacing */
   .process-section,
