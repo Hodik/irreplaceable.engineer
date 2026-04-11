@@ -9,6 +9,7 @@ import ComparisonTable from "../components/lab/ComparisonTable.astro";
 import FounderCard from "../components/lab/FounderCard.astro";
 import PricingCard from "../components/lab/PricingCard.astro";
 import FAQAccordion from "../components/lab/FAQAccordion.astro";
+import SocialProof from "../components/lab/SocialProof.astro";
 import labPreview from "../assets/lab_preview.png";
 import founderPhoto from "../assets/me.PNG";
 import "../styles/landing-shared.css";
@@ -191,6 +192,9 @@ const faqItems = [
 
 <Layout>
   <VerticalLandingLayout>
+    <!-- PPP Banner Slot — populated by ParityDeals SDK, revealed by ppp.js script -->
+    <div id="ppp-banner-slot" class="ppp-banner-slot"></div>
+
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-content">
@@ -216,6 +220,9 @@ const faqItems = [
         </div>
       </div>
     </section>
+
+    <!-- Social Proof -->
+    <SocialProof />
 
     <!-- Before/After Terminal Comparison -->
     <section class="terminal-comparison-section">
@@ -275,6 +282,91 @@ const faqItems = [
       <FAQAccordion items={faqItems} />
     </section>
   </VerticalLandingLayout>
+
+  <!-- ParityDeals PPP SDK loader (verbatim from PD docs) -->
+  <script is:inline>
+    function resolvePdSDKFunction(e,...t){return new Promise((n,i)=>{!function r(){window.PDPromotionUISDK&&"function"==typeof window.PDPromotionUISDK[e]?window.PDPromotionUISDK[e](...t).then(n).catch(i):setTimeout(r,100)}()})}!function(e,t,n,i,r,a,c){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(Array.prototype.slice.call(arguments))},a=t.createElement(n),c=t.getElementsByTagName(n)[0],a.id="parity-deals-sdk",a.async=1,a.src=r,c.parentNode.insertBefore(a,c)}(window,document,"script","PDPromotionUISDK","https://cdn.paritydeals.com/js-promotions-ui/1.0.0/js-promotions-ui.umd.js"),window.PDPromotionUI={init:function(e){PDPromotionUISDK("init",e)},getUpdatedPrice:function(e,t){return resolvePdSDKFunction("getUpdatedPrice",e,t)},updatePriceElement:function(e,t){return resolvePdSDKFunction("updatePriceElement",e,t)},updatePrice:function(e){return resolvePdSDKFunction("updatePrice",e)}};
+  </script>
+
+  <!-- ParityDeals init — banner rendered into #ppp-banner-slot with our own styling -->
+  <script is:inline>
+    PDPromotionUI.init({
+      productId: "promo_cf8febd25a0641f3a9adc47444acf3e8",
+      showBanner: true,
+      localizePricing: false,
+      banner: {
+        container: "#ppp-banner-slot",
+        noStyles: true
+      }
+    });
+  </script>
+
+  <!-- PPP extraction + CTA rewrite
+       Reads the rendered banner's <b> tags (bolds[0] = percent, bolds[1] = code),
+       computes the discounted price manually, rewrites the CTA href with ?promoCode=,
+       and toggles body.ppp-active to reveal the strikethrough and badge via CSS. -->
+  <script is:inline>
+    (function () {
+      var BASE_PRICE = 49;
+      var applied = false;
+
+      function applyDiscount() {
+        if (applied) return true;
+        var slot = document.getElementById("ppp-banner-slot");
+        if (!slot) return false;
+        var bolds = slot.querySelectorAll("b");
+        if (bolds.length < 2) return false;
+
+        var percentText = (bolds[0].textContent || "").trim();
+        var code = (bolds[1].textContent || "").trim();
+        var percent = parseInt(percentText, 10);
+        if (!code || isNaN(percent) || percent <= 0) return false;
+
+        var discounted = BASE_PRICE * (1 - percent / 100);
+        var priceStr = "$" + (Number.isInteger(discounted) ? discounted : discounted.toFixed(2));
+
+        var priceEl = document.querySelector(".price-amount");
+        if (priceEl) priceEl.textContent = priceStr;
+
+        var badge = document.querySelector(".discount-badge");
+        if (badge) badge.textContent = percent + "% off";
+
+        document.body.classList.add("ppp-active");
+
+        var cta = document.getElementById("lab-whop-cta");
+        if (cta) {
+          try {
+            var url = new URL(cta.href);
+            url.searchParams.delete("promoCode");
+            url.searchParams.set("promoCode", code);
+            cta.href = url.toString();
+          } catch (e) {}
+        }
+
+        applied = true;
+        if (window.posthog) {
+          window.posthog.capture("ppp_discount_applied", { percent: percent, code: code });
+        }
+        return true;
+      }
+
+      if (applyDiscount()) return;
+
+      var slot = document.getElementById("ppp-banner-slot");
+      if (!slot) return;
+
+      var obs = new MutationObserver(function () {
+        if (applyDiscount()) obs.disconnect();
+      });
+      obs.observe(slot, { childList: true, subtree: true });
+
+      setTimeout(function () {
+        if (!applied && window.posthog) {
+          window.posthog.capture("ppp_discount_none");
+        }
+      }, 8000);
+    })();
+  </script>
 </Layout>
 
 <style>
@@ -460,6 +552,85 @@ const faqItems = [
     .terminal-comparison {
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
+    }
+  }
+</style>
+
+<!-- ==========================================================================
+     PPP banner styling — global because PD injects unscoped HTML into the slot,
+     and because the `body.ppp-active` class toggle needs to pierce scoped CSS.
+     ========================================================================== -->
+<style is:global>
+  /* Banner slot: hidden until our script confirms a valid discount */
+  .ppp-banner-slot {
+    display: none;
+  }
+
+  body.ppp-active .ppp-banner-slot {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -2rem;
+    animation: pppBannerEnter 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* Hide only the PD branding link (keep flags rendered as img/svg) */
+  .ppp-banner-slot a,
+  .ppp-banner-slot [class*="parity-banner-logo"],
+  .ppp-banner-slot [class*="parity-deals"] {
+    display: none !important;
+  }
+
+  /* PD wrapper becomes the actual pill — fits content, centered by flex parent.
+     !important on padding is required to override PD's injected
+     `.parity-banner-has-logo { padding-left: 120px }` rule which leaks in
+     even with noStyles: true. */
+  .ppp-banner-slot > * {
+    display: inline-block !important;
+    max-width: 100%;
+    padding: 0.55rem 1.1rem !important;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--foreground);
+    text-align: center;
+  }
+
+  /* First <b> = discount percent (from PD template) — accent color, heavier */
+  .ppp-banner-slot b:nth-of-type(1) {
+    font-weight: 700;
+    color: #c75b39;
+    letter-spacing: -0.01em;
+  }
+
+  /* Second <b> = coupon code — monospace, subtly highlighted */
+  .ppp-banner-slot b:nth-of-type(2) {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    font-weight: 600;
+    color: #c75b39;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes pppBannerEnter {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile tightening */
+  @media (max-width: 640px) {
+    .ppp-banner-slot > * {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
     }
   }
 </style>

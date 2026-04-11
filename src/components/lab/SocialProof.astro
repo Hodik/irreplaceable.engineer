@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import googleLogo from "../../assets/logos/google.svg";
+import mongodbLogo from "../../assets/logos/mongodb.svg";
+
+interface Props {
+  text?: string;
+}
+
+const { text = "Join members from companies like" } = Astro.props;
+---
+
+<div class="social-proof">
+  <p class="social-proof-text">{text}</p>
+
+  <div class="logo-row">
+    <Image
+      src={googleLogo}
+      alt="Google"
+      class="logo-item logo-google"
+      loading="lazy"
+    />
+    <Image
+      src={mongodbLogo}
+      alt="MongoDB"
+      class="logo-item logo-mongodb"
+      loading="lazy"
+    />
+  </div>
+</div>
+
+<style>
+  .social-proof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0 0.5rem;
+    width: 100%;
+  }
+
+  .social-proof-text {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    letter-spacing: 0.01em;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 6vw, 4rem);
+    flex-wrap: wrap;
+  }
+
+  .logo-item {
+    display: block;
+    width: auto;
+    opacity: 0.85;
+    filter: saturate(0.85);
+    transition:
+      opacity 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  .logo-item:hover {
+    opacity: 1;
+    filter: saturate(1);
+  }
+
+  .logo-google {
+    height: 1.6rem;
+  }
+
+  .logo-mongodb {
+    height: 1.8rem;
+  }
+
+  @media (min-width: 768px) {
+    .social-proof {
+      gap: 1.75rem;
+      padding: 2.5rem 0 1rem;
+    }
+
+    .social-proof-text {
+      font-size: 1rem;
+    }
+
+    .logo-google {
+      height: 1.85rem;
+    }
+
+    .logo-mongodb {
+      height: 2.1rem;
+    }
+  }
+</style>
