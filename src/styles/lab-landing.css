@@ -1141,7 +1141,7 @@ body.ppp-active .lab-landing .price-ppp-badge { display: inline-flex; }
   font-family: var(--font-sans);
   font-size: 0.82rem;
   color: var(--ie-ink-muted);
-  margin: 0 0 1.25rem;
+  margin: 1rem 0 0;
   text-align: center;
 }
 .lab-landing .price-cta {
