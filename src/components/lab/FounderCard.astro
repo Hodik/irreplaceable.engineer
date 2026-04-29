@@ -36,7 +36,7 @@ const { photo, name, title, quote } = Astro.props;
     flex-direction: row;
     align-items: center;
     gap: 2rem;
-    max-width: 900px;
+    max-width: var(--measure-wide);
     margin: 0 auto;
   }
 
@@ -62,35 +62,37 @@ const { photo, name, title, quote } = Astro.props;
 
   .founder-label {
     margin: 0 0 0.75rem 0;
-    font-size: 0.9rem;
-    font-family: var(--font-sans);
-    font-weight: 600;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
     color: var(--muted-foreground);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: var(--tracking-wider);
   }
 
   .founder-name {
     margin: 0 0 0.5rem 0;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 700;
-    font-family: var(--font-sans);
+    font-size: var(--text-headline);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
     color: var(--foreground);
-    line-height: 1.1;
   }
 
   .founder-title {
     margin: 0 0 1.5rem 0;
-    font-size: 1.1rem;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--muted-foreground);
   }
 
   .founder-quote {
     margin: 0;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-size: var(--text-lg);
     font-style: italic;
     color: var(--foreground);
-    line-height: 1.5;
+    line-height: var(--leading-normal);
+    max-width: var(--measure-base);
     padding-left: 1.5rem;
     border-left: 3px solid var(--primary);
   }

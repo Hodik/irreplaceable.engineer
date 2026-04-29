@@ -53,23 +53,24 @@ const { rows } = Astro.props;
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: var(--font-sans);
   }
 
   .comparison-table th {
     text-align: left;
     padding: var(--space-md) var(--space-lg);
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
     color: var(--muted-foreground);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--tracking-wider);
     border-bottom: 0.125rem solid var(--border);
   }
 
   .comparison-table td {
     padding: var(--space-lg);
-    font-size: 1rem;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--foreground);
     border-bottom: 1px solid var(--border);
   }
@@ -111,7 +112,6 @@ const { rows } = Astro.props;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    font-family: var(--font-sans);
   }
 
   .comparison-card.highlighted {
@@ -131,19 +131,21 @@ const { rows } = Astro.props;
 
   .card-goal {
     flex: 1;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--foreground);
   }
 
   .card-arrow {
     flex-shrink: 0;
     color: var(--muted-foreground);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
   }
 
   .card-solution {
     flex: 1;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--foreground);
     text-align: right;
   }
@@ -162,7 +164,6 @@ const { rows } = Astro.props;
     .comparison-table th,
     .comparison-table td {
       padding: var(--space-md);
-      font-size: 0.9rem;
     }
 
     .comparison-table th:first-child,

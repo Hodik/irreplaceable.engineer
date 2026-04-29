@@ -111,36 +111,34 @@ const { number, title, description, icon, position } = Astro.props;
   }
 
   .node-number {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 700;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
     color: var(--primary);
   }
 
   /* Content */
   .timeline-content {
-    max-width: 23.75rem;
+    max-width: var(--measure-base);
   }
 
   .timeline-content h3 {
     margin: 0 0 0.75rem 0;
-    font-size: clamp(1.15rem, 2vw, 1.35rem);
-    font-weight: 600;
-    font-family: var(--font-sans);
+    font-size: var(--text-title);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
     color: var(--foreground);
-    line-height: 1.3;
   }
 
   .timeline-content p {
     margin: 0;
-    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-    line-height: 1.7;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
     color: var(--muted-foreground);
   }
 
   .timeline-content p :global(strong) {
     color: var(--foreground);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
   }
 
   .timeline-content p :global(em) {
@@ -155,7 +153,7 @@ const { number, title, description, icon, position } = Astro.props;
     }
 
     .timeline-content {
-      max-width: 20rem;
+      max-width: var(--measure-narrow);
     }
   }
 

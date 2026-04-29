@@ -29,7 +29,7 @@ const { items } = Astro.props;
 
 <style>
   .faq-accordion {
-    max-width: 700px;
+    max-width: var(--measure-base);
     margin: 0 auto;
   }
 
@@ -49,9 +49,9 @@ const { items } = Astro.props;
     padding: 1.5rem 0;
     cursor: pointer;
     list-style: none;
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    font-weight: 500;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
     color: var(--foreground);
     transition: color 0.15s ease;
   }
@@ -80,15 +80,15 @@ const { items } = Astro.props;
 
   .faq-answer p {
     margin: 0;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
     color: var(--muted-foreground);
   }
 
   @media (max-width: 980px) {
     .faq-question {
       padding: 1.25rem 0;
-      font-size: 1rem;
+      font-size: var(--text-base);
     }
 
     .faq-answer {

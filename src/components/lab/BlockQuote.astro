@@ -19,23 +19,23 @@ const { quote, attribution } = Astro.props;
     background: var(--card);
     border-left: 4px solid var(--primary);
     border-radius: 0 16px 16px 0;
-    max-width: 700px;
+    max-width: var(--measure-base);
     margin-left: auto;
     margin-right: auto;
   }
 
   .block-quote p {
     margin: 0;
-    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    font-size: var(--text-lg);
     font-style: italic;
-    line-height: 1.6;
+    line-height: var(--leading-normal);
     color: var(--foreground);
   }
 
   .block-quote cite {
     display: block;
     margin-top: 1rem;
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     font-style: normal;
     color: var(--muted-foreground);
   }
