@@ -1,0 +1,15 @@
+name = "lab-checkout"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+
+# Public, non-sensitive vars. Secrets go via `wrangler secret put`.
+[vars]
+POSTHOG_PROJECT_KEY = "phc_mu193aHCkBuENh5uf4n1wncMP4da5z3yNpsZrO7zqZM"
+POSTHOG_API_HOST = "https://us.i.posthog.com"
+WHOP_API_BASE = "https://api.whop.com/api/v1"
+WHOP_PLAN_ID = "plan_eKxbzNBf6ERFb"
+ALLOWED_ORIGIN = "https://irreplaceable.engineer"
+
+# Secrets to set via:
+#   wrangler secret put WHOP_WEBHOOK_SECRET   (format: whsk_<base64>)
+#   wrangler secret put WHOP_API_KEY          (Bearer token from Whop dashboard)
