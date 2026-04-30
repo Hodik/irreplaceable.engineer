@@ -117,7 +117,7 @@ const faqItems = [
 
 <Layout>
   <div class="lab-landing">
-    <div id="ppp-banner-slot" style="display:none"></div>
+    <div id="ppp-banner-slot"></div>
 
     <div class="page">
       <section class="hero">
@@ -129,89 +129,81 @@ const faqItems = [
             </span>
             <span>
               We've applied a PPP discount of
-              <strong class="ppp-emph"><span id="ppp-percent">0</span>% off</strong>.
-              Use code <code class="ppp-code" id="ppp-code">CODE</code> at checkout.
+              <strong class="ppp-emph"
+                ><span id="ppp-percent">0</span>% off</strong
+              >. Use code <code class="ppp-code" id="ppp-code">CODE</code> at checkout.
             </span>
           </div>
 
           <h1>
-            The path to senior, <span class="accent-underline">structured</span>.
+            Build backend judgment fewer engineers have, more companies need.
           </h1>
           <p class="hero-sub">
-            A book-led system for backend engineers. Read the canonical books,
-            complete senior-level assessments, get rubric-graded feedback on
-            every submission.
+            Follow clear reading guides on the canonical books. Design systems,
+            review code, refactor legacy and get instant feedback against a
+            senior-engineer rubric.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary btn-large" href="#pricing" id="lab-whop-cta-top">
+            <a
+              class="btn btn-primary btn-large"
+              href="#pricing"
+              id="lab-whop-cta-top"
+            >
               Join the Lab
               <svg class="btn-arrow" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8 H13 M9 4 L13 8 L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M3 8 H13 M9 4 L13 8 L9 12"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
               </svg>
             </a>
             <a class="btn btn-secondary btn-large" href="#how">How it works</a>
           </div>
 
-          <div class="hero-visual-shell">
-            <div class="hero-visual">
-              <div class="panel">
-                <div class="panel-header">
-                  <span class="crumbs"><span>Code review</span></span>
-                  <span class="meta">DDIA · Ch 7</span>
-                </div>
-                <div class="panel-title">Find every sharding bug before this ships.</div>
-                <div class="code-block code-block-pr"><div class="code-line"><span class="ln">1</span><span><span class="kw">def</span> <span class="fn">shard_for</span>(tenant_id):</span></div><div class="code-line"><span class="ln">2</span><span>    h = hashlib.<span class="fn">md5</span>(tenant_id.<span class="fn">encode</span>())</span></div><div class="code-line code-line-hl3"><span class="ln">3</span><span>    <span class="kw">return</span> nodes[<span class="fn">int</span>(h.<span class="fn">hexdigest</span>(), <span class="num">16</span>) % <span class="fn">len</span>(nodes)]</span></div><div class="pr-comment"><div class="pr-comment-head"><span class="badge badge-muted bug">BUG</span><span class="pr-comment-meta">Comment on line 3</span></div><p class="pr-comment-body">md5 + modulo means adding a node remaps almost everything. Should use consistent hashing.</p></div><div class="code-line"><span class="ln">4</span><span></span></div><div class="code-line"><span class="ln">5</span><span><span class="kw">def</span> <span class="fn">write_event</span>(tenant_id, evt):</span></div><div class="code-line"><span class="ln">6</span><span>    eid = <span class="str">f"&#123;tenant_id&#125;:&#123;evt['name']&#125;:&#123;time.time_ns()&#125;"</span></span></div><div class="code-line"><span class="ln">7</span><span>    <span class="fn">shard_for</span>(tenant_id).<span class="fn">put</span>(eid, evt)</span></div><div class="code-line"><span class="ln">8</span><span class="com">    # also maintain: event_name → [event_ids]</span></div><div class="code-line"><span class="ln">9</span><span>    idx = <span class="fn">shard_for</span>(evt[<span class="str">'name'</span>])</span></div><div class="code-line"><span class="ln">10</span><span>    items = idx.<span class="fn">get</span>(<span class="str">f"idx:&#123;evt['name']&#125;"</span>) <span class="kw">or</span> []</span></div><div class="code-line"><span class="ln">11</span><span>    idx.<span class="fn">put</span>(<span class="str">f"idx:&#123;evt['name']&#125;"</span>, items + [eid])</span></div></div>
+          <div class="hero-visual-v2">
+            <div class="book-stack" aria-hidden="true">
+              <div class="book book-left">
+                <div class="book-spine-strip"></div>
+                <div class="book-eyebrow">DISTRIBUTED</div>
+                <div class="book-title">Database<br />Internals</div>
               </div>
-
-              <div class="hero-visual-arrow" aria-hidden="true">
-                <svg width="26" height="16" viewBox="0 0 26 16" fill="none">
-                  <path d="M2 8 L22 8 M17 2 L22 8 L17 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
+              <div class="book book-center">
+                <div class="book-spine-strip"></div>
+                <div class="book-eyebrow book-publisher">O'REILLY</div>
+                <div class="book-title book-title-large">
+                  Designing<br />Data-<br />Intensive<br />Applications
+                </div>
+                <div class="book-author">Martin Kleppmann</div>
               </div>
-
-              <div class="panel panel-feedback">
-                <div class="panel-header">
-                  <span class="crumbs"><span>AI feedback · Senior rubric</span></span>
-                  <span class="meta">1 of 3 found</span>
+              <div class="book book-right">
+                <div class="book-spine-strip"></div>
+                <div class="book-eyebrow">SOFTWARE</div>
+                <div class="book-title">
+                  Understanding<br />Distributed<br />Systems
                 </div>
-                <div class="ai-panel-body">
-                  <div class="finding finding-crit">
-                    <div class="finding-row">
-                      <span class="badge badge-solid crit">CRITICAL</span>
-                      <span class="chip chip-found">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                          <path d="M3 8.5 L6.5 12 L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        FOUND
-                      </span>
-                    </div>
-                    <div class="finding-title">MD5 + modulo: total reshuffle on resize</div>
-                    <p class="finding-body">You caught it. A senior would also quantify: ~80% of keys remap going from 4 to 5 nodes.</p>
-                    <div class="finding-ref">Ch 7 · Hash Partitioning</div>
-                  </div>
+              </div>
+            </div>
 
-                  <div class="finding finding-skew">
-                    <div class="finding-row">
-                      <span class="badge badge-solid skew">SKEW</span>
-                      <span class="chip chip-missed">MISSED</span>
-                    </div>
-                    <div class="finding-title">Tenant-only key creates hot shards</div>
-                    <p class="finding-body">One large tenant overloads its node. Compound the key with event_id.</p>
-                    <div class="finding-ref">Ch 7 · Skewed Workloads</div>
-                  </div>
-
-                  <div class="finding finding-cross">
-                    <div class="finding-row">
-                      <span class="badge badge-solid cross">CROSS-SHARD</span>
-                      <span class="chip chip-missed">MISSED</span>
-                    </div>
-                    <div class="finding-title">Index lives on a different node than events</div>
-                    <p class="finding-body">Each write hits two nodes with no atomicity. Use a local secondary index.</p>
-                    <div class="finding-ref">Ch 7 · Secondary Indexes</div>
-                  </div>
-
-                  <div class="findings-footer">+ 1 more finding</div>
-                </div>
+            <div class="topic-cloud">
+              <div class="topic-cloud-eyebrow">WHAT YOU'LL WORK THROUGH</div>
+              <div class="topic-cloud-chips">
+                <span class="topic-chip">transaction isolation</span>
+                <span class="topic-chip">consistent hashing</span>
+                <span class="topic-chip">eventual consistency</span>
+                <span class="topic-chip">consensus (Raft)</span>
+                <span class="topic-chip">two-phase commit</span>
+                <span class="topic-chip">SAGAs</span>
+                <span class="topic-chip">idempotency keys</span>
+                <span class="topic-chip">exactly-once delivery</span>
+                <span class="topic-chip">backpressure</span>
+                <span class="topic-chip">error as values</span>
+                <span class="topic-chip">replication lag</span>
+                <span class="topic-chip">bounded contexts</span>
+                <span class="topic-chip">dependency injection</span>
+                <span class="topic-chip">CDC &amp; outbox pattern</span>
+                <span class="topic-chip topic-chip-more">+ 40 more</span>
               </div>
             </div>
           </div>
@@ -223,8 +215,12 @@ const faqItems = [
           <p class="trust-label">Join members from companies like</p>
           <div class="trust-logos">
             <span class="logo-text">Google</span>
-            <span class="logo-text" style="font-weight:600; letter-spacing:-0.02em">MongoDB</span>
-            <span class="logo-text" style="letter-spacing:-0.02em">Revolut</span>
+            <span
+              class="logo-text"
+              style="font-weight:600; letter-spacing:-0.02em">MongoDB</span
+            >
+            <span class="logo-text" style="letter-spacing:-0.02em">Revolut</span
+            >
             <span class="logo-text" style="letter-spacing:-0.02em">EPAM</span>
           </div>
         </div>
@@ -234,11 +230,28 @@ const faqItems = [
         <div class="container-narrow">
           <h2>Sound familiar?</h2>
           <ul class="pain-list">
-            <li>You've started <span class="em">Designing Data-Intensive Applications</span> twice. You're not sure you'd remember chapter 3 if asked.</li>
-            <li>You read technical books passively because you have no way to test whether you actually understood them.</li>
-            <li>You make architectural decisions by pattern-matching what you've seen at work, not by reasoning from principles you've internalized.</li>
-            <li>You've never had your code review skills, design instincts, or refactor judgment evaluated against a senior-engineer rubric.</li>
-            <li>You learn what your current job exposes you to, which is a narrow slice of what senior engineers actually need to know.</li>
+            <li>
+              You've started <span class="em"
+                >Designing Data-Intensive Applications</span
+              > twice. You're not sure you'd remember chapter 3 if asked.
+            </li>
+            <li>
+              You read technical books passively because you have no way to test
+              whether you actually understood them.
+            </li>
+            <li>
+              You make architectural decisions by pattern-matching what you've
+              seen at work, not by reasoning from principles you've
+              internalized.
+            </li>
+            <li>
+              You've never had your code review skills, design instincts, or
+              refactor judgment evaluated against a senior-engineer rubric.
+            </li>
+            <li>
+              You learn what your current job exposes you to, which is a narrow
+              slice of what senior engineers actually need to know.
+            </li>
           </ul>
 
           <figure class="testimonial-card">
@@ -250,14 +263,23 @@ const faqItems = [
               </div>
             </div>
             <blockquote class="testimonial-quote">
-              "This course was exactly what I needed. It helped me stop giving up on
-              hard technical books and finally finish them. The quizzes are excellent
-              for checking my understanding and making sure I can actually use the
-              theory in real tasks."
+              "This course was exactly what I needed. It helped me stop giving
+              up on hard technical books and finally finish them. The quizzes
+              are excellent for checking my understanding and making sure I can
+              actually use the theory in real tasks."
             </blockquote>
             <figcaption class="testimonial-source">
-              <svg class="discord-glyph" width="18" height="14" viewBox="0 0 24 18" fill="currentColor" aria-hidden="true">
-                <path d="M20.317 1.492A19.79 19.79 0 0 0 15.79 0a14.9 14.9 0 0 0-.69 1.42 18.27 18.27 0 0 0-5.487 0A14.9 14.9 0 0 0 8.92 0a19.83 19.83 0 0 0-4.53 1.494C1.063 6.3.16 10.978.61 15.59a19.95 19.95 0 0 0 6.062 3.05c.49-.66.928-1.362 1.305-2.097-.71-.266-1.39-.595-2.04-.985.171-.126.339-.257.5-.39 3.926 1.83 8.18 1.83 12.06 0 .163.135.33.266.5.39-.652.392-1.334.722-2.044.989a14.61 14.61 0 0 0 1.305 2.092 19.86 19.86 0 0 0 6.063-3.052c.527-5.345-.901-9.98-3.999-14.095zM8.02 12.778c-1.183 0-2.157-1.085-2.157-2.42s.955-2.42 2.157-2.42c1.21 0 2.176 1.094 2.157 2.42 0 1.335-.955 2.42-2.157 2.42zm7.974 0c-1.182 0-2.157-1.085-2.157-2.42s.955-2.42 2.157-2.42c1.21 0 2.176 1.094 2.157 2.42 0 1.335-.946 2.42-2.157 2.42z"></path>
+              <svg
+                class="discord-glyph"
+                width="18"
+                height="14"
+                viewBox="0 0 24 18"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.317 1.492A19.79 19.79 0 0 0 15.79 0a14.9 14.9 0 0 0-.69 1.42 18.27 18.27 0 0 0-5.487 0A14.9 14.9 0 0 0 8.92 0a19.83 19.83 0 0 0-4.53 1.494C1.063 6.3.16 10.978.61 15.59a19.95 19.95 0 0 0 6.062 3.05c.49-.66.928-1.362 1.305-2.097-.71-.266-1.39-.595-2.04-.985.171-.126.339-.257.5-.39 3.926 1.83 8.18 1.83 12.06 0 .163.135.33.266.5.39-.652.392-1.334.722-2.044.989a14.61 14.61 0 0 0 1.305 2.092 19.86 19.86 0 0 0 6.063-3.052c.527-5.345-.901-9.98-3.999-14.095zM8.02 12.778c-1.183 0-2.157-1.085-2.157-2.42s.955-2.42 2.157-2.42c1.21 0 2.176 1.094 2.157 2.42 0 1.335-.955 2.42-2.157 2.42zm7.974 0c-1.182 0-2.157-1.085-2.157-2.42s.955-2.42 2.157-2.42c1.21 0 2.176 1.094 2.157 2.42 0 1.335-.946 2.42-2.157 2.42z"
+                ></path>
               </svg>
               <span>Posted in our community Discord</span>
             </figcaption>
@@ -268,7 +290,9 @@ const faqItems = [
       <section class="mechanism" id="how">
         <div class="container">
           <div class="mechanism-head">
-            <div class="section-label"><span class="num">02</span> · The loop</div>
+            <div class="section-label">
+              <span class="num">02</span> · The loop
+            </div>
             <h2 class="section-heading">How the Lab works</h2>
           </div>
 
@@ -278,8 +302,20 @@ const faqItems = [
               <div class="loop-name">Diagnose</div>
             </div>
             <div class="loop-arrow-wrap">
-              <svg class="loop-arrow" width="140" height="24" viewBox="0 0 140 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 12 C 45 6, 90 18, 130 12 L 121 7 M 130 12 L 121 17"></path>
+              <svg
+                class="loop-arrow"
+                width="140"
+                height="24"
+                viewBox="0 0 140 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12 C 45 6, 90 18, 130 12 L 121 7 M 130 12 L 121 17"
+                ></path>
               </svg>
             </div>
             <div class="loop-step">
@@ -287,7 +323,18 @@ const faqItems = [
               <div class="loop-name">Read</div>
             </div>
             <div class="loop-arrow-wrap">
-              <svg class="loop-arrow" width="140" height="24" viewBox="0 0 140 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                class="loop-arrow"
+                width="140"
+                height="24"
+                viewBox="0 0 140 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <path d="M4 12 Q 67 8, 130 12 L 121 7 M 130 12 L 121 17"></path>
               </svg>
             </div>
@@ -296,8 +343,20 @@ const faqItems = [
               <div class="loop-name">Practice</div>
             </div>
             <div class="loop-arrow-wrap">
-              <svg class="loop-arrow" width="140" height="24" viewBox="0 0 140 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 12 C 45 14, 90 10, 130 12 L 121 7 M 130 12 L 121 17"></path>
+              <svg
+                class="loop-arrow"
+                width="140"
+                height="24"
+                viewBox="0 0 140 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12 C 45 14, 90 10, 130 12 L 121 7 M 130 12 L 121 17"
+                ></path>
               </svg>
             </div>
             <div class="loop-step">
@@ -307,20 +366,22 @@ const faqItems = [
           </div>
 
           <div class="steps">
-            {processSteps.map((s) => (
-              <div class={`step${s.rev ? " rev" : ""}`}>
-                <div class="step-text">
-                  <div class="step-num">STEP {s.n}</div>
-                  <h3>{s.title}</h3>
-                  {s.bodyHtml ? <p set:html={s.bodyHtml} /> : <p>{s.body}</p>}
+            {
+              processSteps.map((s) => (
+                <div class={`step${s.rev ? " rev" : ""}`}>
+                  <div class="step-text">
+                    <div class="step-num">STEP {s.n}</div>
+                    <h3>{s.title}</h3>
+                    {s.bodyHtml ? <p set:html={s.bodyHtml} /> : <p>{s.body}</p>}
+                  </div>
+                  <div class="step-visual">
+                    <figure class="shot">
+                      <img src={s.img.src} alt={s.alt} loading="lazy" />
+                    </figure>
+                  </div>
                 </div>
-                <div class="step-visual">
-                  <figure class="shot">
-                    <img src={s.img.src} alt={s.alt} loading="lazy" />
-                  </figure>
-                </div>
-              </div>
-            ))}
+              ))
+            }
 
             <div class="step">
               <div class="step-text">
@@ -333,19 +394,31 @@ const faqItems = [
                   <div class="practice-item">
                     <div class="practice-eyebrow">THE ASSESSMENT</div>
                     <figure class="shot">
-                      <img src={hldQuestionImg.src} alt="HLD question — wallet ledger" loading="lazy" />
+                      <img
+                        src={hldQuestionImg.src}
+                        alt="HLD question — wallet ledger"
+                        loading="lazy"
+                      />
                     </figure>
                   </div>
                   <div class="practice-item">
                     <div class="practice-eyebrow">THE FEEDBACK</div>
                     <figure class="shot">
-                      <img src={feedbackImg.src} alt="AI feedback against senior rubric" loading="lazy" />
+                      <img
+                        src={feedbackImg.src}
+                        alt="AI feedback against senior rubric"
+                        loading="lazy"
+                      />
                     </figure>
                   </div>
                   <div class="practice-item">
                     <div class="practice-eyebrow">THE VIDEO, WHEN NEEDED</div>
                     <figure class="shot shot-video">
-                      <img src={videoImg.src} alt="Video explanation: pick the isolation level" loading="lazy" />
+                      <img
+                        src={videoImg.src}
+                        alt="Video explanation: pick the isolation level"
+                        loading="lazy"
+                      />
                     </figure>
                   </div>
                 </div>
@@ -360,7 +433,11 @@ const faqItems = [
               </div>
               <div class="step-visual">
                 <figure class="shot shot-tall">
-                  <img src={discussStep.img.src} alt={discussStep.alt} loading="lazy" />
+                  <img
+                    src={discussStep.img.src}
+                    alt={discussStep.alt}
+                    loading="lazy"
+                  />
                 </figure>
               </div>
             </div>
@@ -370,31 +447,86 @@ const faqItems = [
 
       <section class="after">
         <div class="container">
-          <div class="section-label"><span class="num">03</span> · The outcome</div>
+          <div class="section-label">
+            <span class="num">03</span> · The outcome
+          </div>
           <h2 class="section-heading">After your first book</h2>
-          <p class="section-sub">Four capabilities that quietly mark the difference between mid-level and senior.</p>
+          <p class="section-sub">
+            Four capabilities that quietly mark the difference between mid-level
+            and senior.
+          </p>
 
           <div class="after-grid">
-            {capabilities.map((c, i) => (
-              <div class="cap-card">
-                <div class="cap-icon">
-                  {i === 0 && (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4 H21 V18 H3 Z"></path><path d="M7 9 H17 M7 13 H13"></path></svg>
-                  )}
-                  {i === 1 && (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18 L3 12 L9 6"></path><path d="M15 6 L21 12 L15 18"></path></svg>
-                  )}
-                  {i === 2 && (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12 a9 9 0 1 1 -3.5 -7"></path><path d="M21 4 V12 H13"></path></svg>
-                  )}
-                  {i === 3 && (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20 c0 -3.5 3 -6 7 -6 s7 2.5 7 6"></path></svg>
-                  )}
+            {
+              capabilities.map((c, i) => (
+                <div class="cap-card">
+                  <div class="cap-icon">
+                    {i === 0 && (
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 4 H21 V18 H3 Z" />
+                        <path d="M7 9 H17 M7 13 H13" />
+                      </svg>
+                    )}
+                    {i === 1 && (
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M9 18 L3 12 L9 6" />
+                        <path d="M15 6 L21 12 L15 18" />
+                      </svg>
+                    )}
+                    {i === 2 && (
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M21 12 a9 9 0 1 1 -3.5 -7" />
+                        <path d="M21 4 V12 H13" />
+                      </svg>
+                    )}
+                    {i === 3 && (
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="8" r="3.5" />
+                        <path d="M5 20 c0 -3.5 3 -6 7 -6 s7 2.5 7 6" />
+                      </svg>
+                    )}
+                  </div>
+                  <h3 class="cap-title">{c.title}</h3>
+                  <p class="cap-body">{c.body}</p>
                 </div>
-                <h3 class="cap-title">{c.title}</h3>
-                <p class="cap-body">{c.body}</p>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </section>
@@ -403,7 +535,10 @@ const faqItems = [
         <div class="container">
           <div class="founder-card">
             <div class="founder-portrait">
-              <img src={founderPhoto.src} alt="Denis — Senior Backend Software Engineer" />
+              <img
+                src={founderPhoto.src}
+                alt="Denis — Senior Backend Software Engineer"
+              />
             </div>
             <div class="founder-text">
               <div class="founder-eyebrow">BUILT BY</div>
@@ -423,29 +558,52 @@ const faqItems = [
             <div class="price-card-tag">Membership</div>
 
             <div class="price-block">
-              <span class="price-amount strike" id="price-amount-strike">$49</span>
+              <span class="price-amount strike" id="price-amount-strike"
+                >$49</span
+              >
               <span class="price-amount" id="price-amount">$49</span>
               <span class="price-period">/ month</span>
             </div>
             <div class="price-ppp-badge" id="price-ppp-badge">
-              <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"></circle></svg>
-              <span id="price-ppp-text">40% off · regional pricing applied</span>
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 16 16"
+                fill="currentColor"><circle cx="8" cy="8" r="3"></circle></svg
+              >
+              <span id="price-ppp-text">40% off · regional pricing applied</span
+              >
             </div>
 
             <ul class="price-features">
-              {pricingFeatures.map((f) => (
-                <li>
-                  <span class="check">
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8.5 L6.5 12 L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </span>
-                  <span>{f}</span>
-                </li>
-              ))}
+              {
+                pricingFeatures.map((f) => (
+                  <li>
+                    <span class="check">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M3 8.5 L6.5 12 L13 4.5"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span>{f}</span>
+                  </li>
+                ))
+              }
             </ul>
 
-            <a class="price-cta" href={checkoutUrl} id="lab-whop-cta">Join now</a>
+            <a class="price-cta" href={checkoutUrl} id="lab-whop-cta"
+              >Join now</a
+            >
 
             <p class="price-cancel">Cancel anytime.</p>
           </div>
@@ -456,20 +614,26 @@ const faqItems = [
         <div class="container-narrow">
           <div class="section-label"><span class="num">05</span> · FAQ</div>
           <h2 class="section-heading">The honest answers</h2>
-          <p class="section-sub">If something's not here, ask in the community after you join.</p>
 
           <div class="faq-list">
-            {faqItems.map((it, i) => (
-              <div class={`faq-item${i === 0 ? " open" : ""}`}>
-                <button class="faq-q" type="button">
-                  <span>{it.q}</span>
-                  <svg class="faq-icon" viewBox="0 0 16 16" fill="none">
-                    <path d="M8 3 V13 M3 8 H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                  </svg>
-                </button>
-                <div class="faq-a" set:html={it.aHtml}></div>
-              </div>
-            ))}
+            {
+              faqItems.map((it, i) => (
+                <div class={`faq-item${i === 0 ? " open" : ""}`}>
+                  <button class="faq-q" type="button">
+                    <span>{it.q}</span>
+                    <svg class="faq-icon" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M8 3 V13 M3 8 H13"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="faq-a" set:html={it.aHtml} />
+                </div>
+              ))
+            }
           </div>
         </div>
       </section>
@@ -478,24 +642,229 @@ const faqItems = [
         <div class="container">
           <h2>Start your <span class="underline">first book</span>.</h2>
           <p class="final-fact">$49/mo. Cancel anytime.</p>
-          <a class="btn btn-primary btn-large" href="#pricing">Join now</a>
+          <a
+            class="btn btn-primary btn-large"
+            href="#pricing"
+            id="lab-cta-final">Join now</a
+          >
         </div>
       </section>
     </div>
   </div>
 
   <script is:inline>
-    document.querySelectorAll(".lab-landing .faq-item .faq-q").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const item = btn.closest(".faq-item");
-        if (!item) return;
-        item.classList.toggle("open");
+    document
+      .querySelectorAll(".lab-landing .faq-item .faq-q")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          if (!item) return;
+          item.classList.toggle("open");
+        });
       });
-    });
   </script>
 
   <script is:inline>
-    function resolvePdSDKFunction(e,...t){return new Promise((n,i)=>{!function r(){window.PDPromotionUISDK&&"function"==typeof window.PDPromotionUISDK[e]?window.PDPromotionUISDK[e](...t).then(n).catch(i):setTimeout(r,100)}()})}!function(e,t,n,i,r,a,c){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(Array.prototype.slice.call(arguments))},a=t.createElement(n),c=t.getElementsByTagName(n)[0],a.id="parity-deals-sdk",a.async=1,a.src=r,c.parentNode.insertBefore(a,c)}(window,document,"script","PDPromotionUISDK","https://cdn.paritydeals.com/js-promotions-ui/1.0.0/js-promotions-ui.umd.js"),window.PDPromotionUI={init:function(e){PDPromotionUISDK("init",e)},getUpdatedPrice:function(e,t){return resolvePdSDKFunction("getUpdatedPrice",e,t)},updatePriceElement:function(e,t){return resolvePdSDKFunction("updatePriceElement",e,t)},updatePrice:function(e){return resolvePdSDKFunction("updatePrice",e)}};
+    (function () {
+      var WORKER_URL = "https://lab-checkout.ie-lab.workers.dev";
+      var FALLBACK_CHECKOUT = "https://whop.com/checkout/plan_eKxbzNBf6ERFb";
+
+      function resolveAttribution() {
+        var params = new URLSearchParams(location.search);
+        var utm = {};
+        [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_content",
+          "utm_term",
+        ].forEach(function (k) {
+          var v = params.get(k);
+          if (v) utm[k] = v;
+        });
+
+        if (!utm.utm_source) {
+          var ref = document.referrer;
+          if (ref) {
+            try {
+              var host = new URL(ref).hostname.replace(/^www\./, "");
+              var m = host.match(
+                /^(google|bing|duckduckgo|yahoo|yandex|baidu|ecosia|brave)\./,
+              );
+              if (m) {
+                utm.utm_source = m[1];
+                utm.utm_medium = "organic";
+              } else {
+                utm.utm_source = host;
+                utm.utm_medium = "referral";
+              }
+            } catch (e) {}
+          }
+          if (!utm.utm_source) {
+            utm.utm_source = "direct";
+            utm.utm_medium = "(none)";
+          }
+        }
+
+        var referringDomain = null;
+        try {
+          referringDomain = document.referrer
+            ? new URL(document.referrer).hostname
+            : null;
+        } catch (e) {}
+
+        return Object.assign({}, utm, {
+          referrer: document.referrer || null,
+          referring_domain: referringDomain,
+          landing_path: location.pathname,
+        });
+      }
+
+      var attribution = resolveAttribution();
+      try {
+        sessionStorage.setItem("lab_attribution", JSON.stringify(attribution));
+      } catch (e) {}
+
+      function captureWhenReady(name, props) {
+        function fire() {
+          if (window.posthog && typeof window.posthog.capture === "function") {
+            window.posthog.capture(name, props);
+            return true;
+          }
+          return false;
+        }
+        if (fire()) return;
+        var tries = 0;
+        var iv = setInterval(function () {
+          if (fire() || ++tries > 40) clearInterval(iv);
+        }, 100);
+      }
+
+      captureWhenReady("landing_viewed", attribution);
+
+      function attachIntent(id, eventName) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("click", function () {
+          captureWhenReady(eventName, attribution);
+        });
+      }
+      attachIntent("lab-whop-cta-top", "hero_cta_clicked");
+      attachIntent("lab-cta-final", "final_cta_clicked");
+
+      var pricingCta = document.getElementById("lab-whop-cta");
+      if (pricingCta) {
+        pricingCta.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          var did = null;
+          try {
+            did =
+              window.posthog &&
+              window.posthog.get_distinct_id &&
+              window.posthog.get_distinct_id();
+          } catch (err) {}
+
+          captureWhenReady("checkout_clicked", attribution);
+
+          var promoCode = null;
+          try {
+            promoCode = new URL(pricingCta.href).searchParams.get("promoCode");
+          } catch (err) {}
+
+          var fallback = function (reason) {
+            captureWhenReady(
+              "checkout_fallback_used",
+              Object.assign({ reason: reason }, attribution),
+            );
+            var url = FALLBACK_CHECKOUT;
+            if (promoCode) {
+              url +=
+                (url.indexOf("?") >= 0 ? "&" : "?") +
+                "promoCode=" +
+                encodeURIComponent(promoCode);
+            }
+            location.href = url;
+          };
+
+          if (!did) {
+            fallback("no_distinct_id");
+            return;
+          }
+
+          var payload = Object.assign(
+            { posthog_distinct_id: did, promo_code: promoCode || undefined },
+            attribution,
+          );
+
+          fetch(WORKER_URL + "/create-checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error("worker_" + res.status);
+              return res.json();
+            })
+            .then(function (body) {
+              if (!body || !body.url) throw new Error("missing_url");
+              location.href = body.url;
+            })
+            .catch(function (err) {
+              fallback(String((err && err.message) || err));
+            });
+        });
+      }
+    })();
+  </script>
+
+  <script is:inline>
+    function resolvePdSDKFunction(e, ...t) {
+      return new Promise((n, i) => {
+        !(function r() {
+          window.PDPromotionUISDK &&
+          "function" == typeof window.PDPromotionUISDK[e]
+            ? window.PDPromotionUISDK[e](...t)
+                .then(n)
+                .catch(i)
+            : setTimeout(r, 100);
+        })();
+      });
+    }
+    (!(function (e, t, n, i, r, a, c) {
+      ((e[i] =
+        e[i] ||
+        function () {
+          (e[i].q = e[i].q || []).push(Array.prototype.slice.call(arguments));
+        }),
+        (a = t.createElement(n)),
+        (c = t.getElementsByTagName(n)[0]),
+        (a.id = "parity-deals-sdk"),
+        (a.async = 1),
+        (a.src = r),
+        c.parentNode.insertBefore(a, c));
+    })(
+      window,
+      document,
+      "script",
+      "PDPromotionUISDK",
+      "https://cdn.paritydeals.com/js-promotions-ui/1.0.0/js-promotions-ui.umd.js",
+    ),
+      (window.PDPromotionUI = {
+        init: function (e) {
+          PDPromotionUISDK("init", e);
+        },
+        getUpdatedPrice: function (e, t) {
+          return resolvePdSDKFunction("getUpdatedPrice", e, t);
+        },
+        updatePriceElement: function (e, t) {
+          return resolvePdSDKFunction("updatePriceElement", e, t);
+        },
+        updatePrice: function (e) {
+          return resolvePdSDKFunction("updatePrice", e);
+        },
+      }));
   </script>
 
   <script is:inline>
@@ -505,8 +874,8 @@ const faqItems = [
       localizePricing: false,
       banner: {
         container: "#ppp-banner-slot",
-        noStyles: true
-      }
+        noStyles: true,
+      },
     });
   </script>
 
@@ -528,7 +897,9 @@ const faqItems = [
         if (!code || isNaN(percent) || percent <= 0) return false;
 
         var discounted = BASE_PRICE * (1 - percent / 100);
-        var priceStr = "$" + (Number.isInteger(discounted) ? discounted : discounted.toFixed(2));
+        var priceStr =
+          "$" +
+          (Number.isInteger(discounted) ? discounted : discounted.toFixed(2));
 
         var priceEl = document.getElementById("price-amount");
         if (priceEl) priceEl.textContent = priceStr;
@@ -540,7 +911,8 @@ const faqItems = [
         if (pppCode) pppCode.textContent = code;
 
         var pppText = document.getElementById("price-ppp-text");
-        if (pppText) pppText.textContent = percent + "% off · regional pricing applied";
+        if (pppText)
+          pppText.textContent = percent + "% off · regional pricing applied";
 
         document.body.classList.add("ppp-active");
 
@@ -556,7 +928,10 @@ const faqItems = [
 
         applied = true;
         if (window.posthog) {
-          window.posthog.capture("ppp_discount_applied", { percent: percent, code: code });
+          window.posthog.capture("ppp_discount_applied", {
+            percent: percent,
+            code: code,
+          });
         }
         return true;
       }
