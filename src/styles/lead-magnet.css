@@ -1,0 +1,388 @@
+/* ============================================================
+   Lead Magnet — 2026 Backend Engineer Assessment
+   Reuses tokens + .btn / .container primitives from lab-landing.css
+   (the page wraps everything in .lab-landing.lead-magnet).
+   ============================================================ */
+
+/* ===== Force all text to ink black inside the lead magnet ===== */
+.lab-landing.lead-magnet h1,
+.lab-landing.lead-magnet h2,
+.lab-landing.lead-magnet h3,
+.lab-landing.lead-magnet .lm-sub,
+.lab-landing.lead-magnet .lm-microcopy,
+.lab-landing.lead-magnet .lm-microcopy .sep,
+.lab-landing.lead-magnet .lm-trust-line,
+.lab-landing.lead-magnet .lm-badge,
+.lab-landing.lead-magnet .lm-overall-label,
+.lab-landing.lead-magnet .lm-overall-num,
+.lab-landing.lead-magnet .lm-overall-den,
+.lab-landing.lead-magnet .lm-overall-tier,
+.lab-landing.lead-magnet .lm-stand-label,
+.lab-landing.lead-magnet .lm-stand-text,
+.lab-landing.lead-magnet .lm-stand-text .em,
+.lab-landing.lead-magnet .lm-domains-head,
+.lab-landing.lead-magnet .lm-domain-name,
+.lab-landing.lead-magnet .lm-domain-score,
+.lab-landing.lead-magnet .lm-domain-score .den,
+.lab-landing.lead-magnet .lm-scorecard-head,
+.lab-landing.lead-magnet .lm-scorecard-head .crumbs,
+.lab-landing.lead-magnet .lm-scorecard-head .crumbs .sep,
+.lab-landing.lead-magnet .lm-scorecard-head .meta {
+  color: var(--ie-ink) !important;
+}
+
+/* keep primary button text white — higher specificity than the rules above */
+.lab-landing.lead-magnet a.btn.btn-primary,
+.lab-landing.lead-magnet a.btn.btn-primary *,
+.lab-landing.lead-magnet .btn-primary,
+.lab-landing.lead-magnet .btn-primary svg {
+  color: var(--ie-paper) !important;
+  stroke: var(--ie-paper) !important;
+}
+
+/* ===== Page wrapper: vertically center hero in viewport ===== */
+.lab-landing.lead-magnet .lm-page-centered {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lab-landing.lead-magnet .lm-page-centered .lm-hero {
+  width: 100%;
+}
+
+/* ===== Lead-magnet hero — split layout ===== */
+.lab-landing.lead-magnet .lm-hero {
+  padding: 3rem 0;
+}
+@media (max-width: 880px) {
+  .lab-landing.lead-magnet .lm-hero { padding: 2.5rem 0; }
+}
+
+.lab-landing.lead-magnet .lm-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 4rem;
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .lab-landing.lead-magnet .lm-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.lab-landing.lead-magnet .lm-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ie-ink-muted);
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  background: var(--ie-paper-2);
+  border: 1px solid var(--ie-border);
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+.lab-landing.lead-magnet .lm-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ie-clay);
+}
+
+.lab-landing.lead-magnet .lm-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ie-ink);
+  margin: 0 0 1.25rem;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.lab-landing.lead-magnet .lm-sub {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--ie-ink-muted);
+  margin: 0 0 2rem;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.lab-landing.lead-magnet .lm-cta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+  width: fit-content;
+}
+.lab-landing.lead-magnet .lm-cta-stack .btn-primary {
+  font-size: 1.05rem;
+  padding: 1.05rem 1.65rem;
+}
+
+.lab-landing.lead-magnet .lm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.75rem;
+}
+.lab-landing.lead-magnet .lm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ie-ink);
+  background: var(--ie-paper-2);
+  border: 1px solid var(--ie-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+}
+.lab-landing.lead-magnet .lm-badge .lm-badge-glyph {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.lab-landing.lead-magnet .lm-trust-block {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ie-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.lab-landing.lead-magnet .lm-trust-line {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ie-ink-muted);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.lab-landing.lead-magnet .lm-trust-line strong {
+  font-weight: 600;
+  color: var(--ie-ink);
+}
+
+.lab-landing.lead-magnet .lm-trust-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+}
+
+.lab-landing.lead-magnet .lm-trust-wordmark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--ie-ink);
+  line-height: 1;
+  opacity: 0.85;
+}
+.lab-landing.lead-magnet .lm-trust-more {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ie-ink-muted) !important;
+  font-style: italic;
+}
+
+/* ===== Hero visual: scorecard panel ===== */
+.lab-landing.lead-magnet .lm-scorecard {
+  background: var(--ie-paper);
+  border: 1px solid var(--ie-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(20, 20, 20, 0.05), 0 1px 3px rgba(0,0,0,0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.lab-landing.lead-magnet .lm-scorecard-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--ie-border);
+  background: var(--ie-paper-2);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--ie-ink-muted);
+}
+.lab-landing.lead-magnet .lm-scorecard-head .crumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+}
+.lab-landing.lead-magnet .lm-scorecard-head .crumbs .sep { opacity: 0.4; }
+.lab-landing.lead-magnet .lm-scorecard-head .meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.lab-landing.lead-magnet .lm-scorecard-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--ie-border);
+}
+.lab-landing.lead-magnet .lm-overall {
+  padding: 1.5rem 1.4rem 1.4rem;
+  border-right: 1px solid var(--ie-border);
+}
+.lab-landing.lead-magnet .lm-overall-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ie-ink-muted);
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+}
+.lab-landing.lead-magnet .lm-overall-score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0 0 0.4rem;
+}
+.lab-landing.lead-magnet .lm-overall-num {
+  font-family: var(--font-serif);
+  font-size: 3.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ie-ink);
+}
+.lab-landing.lead-magnet .lm-overall-den {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--ie-ink-muted);
+}
+.lab-landing.lead-magnet .lm-overall-tier {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--ie-clay);
+  font-weight: 600;
+}
+
+.lab-landing.lead-magnet .lm-stand {
+  padding: 1.5rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+.lab-landing.lead-magnet .lm-stand-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ie-ink-muted);
+  font-weight: 500;
+}
+.lab-landing.lead-magnet .lm-stand-text {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--ie-ink);
+  margin: 0;
+}
+.lab-landing.lead-magnet .lm-stand-text .em {
+  color: var(--ie-clay);
+  font-weight: 600;
+}
+
+/* domain bars */
+.lab-landing.lead-magnet .lm-domains {
+  padding: 1.1rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.lab-landing.lead-magnet .lm-domains-head {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ie-ink-muted);
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+  display: flex;
+  justify-content: space-between;
+}
+.lab-landing.lead-magnet .lm-domain-row {
+  display: grid;
+  grid-template-columns: 145px 1fr 48px;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+}
+.lab-landing.lead-magnet .lm-domain-name {
+  font-size: 0.88rem;
+  color: var(--ie-ink);
+  font-weight: 500;
+}
+.lab-landing.lead-magnet .lm-domain-track {
+  height: 8px;
+  background: var(--ie-paper-2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.lab-landing.lead-magnet .lm-domain-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--ie-ink);
+  transition: width 0.6s ease;
+}
+.lab-landing.lead-magnet .lm-domain-fill.low { background: var(--ie-clay); }
+.lab-landing.lead-magnet .lm-domain-fill.mid { background: var(--ie-clay); opacity: 0.85; }
+.lab-landing.lead-magnet .lm-domain-fill.hi  { background: var(--ie-teal); }
+.lab-landing.lead-magnet .lm-domain-score {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ie-ink);
+  text-align: right;
+  font-weight: 500;
+}
+.lab-landing.lead-magnet .lm-domain-score .den { color: var(--ie-ink-muted); font-weight: 400; }
+
+@media (max-width: 520px) {
+  .lab-landing.lead-magnet .lm-scorecard-top { grid-template-columns: 1fr; }
+  .lab-landing.lead-magnet .lm-overall { border-right: none; border-bottom: 1px solid var(--ie-border); }
+  .lab-landing.lead-magnet .lm-domain-row { grid-template-columns: 110px 1fr 42px; gap: 0.5rem; }
+  .lab-landing.lead-magnet .lm-overall-num { font-size: 2.6rem; }
+}
+
+/* ===== Mobile: center hero copy horizontally =====
+   Placed at end of file so margin overrides win against the
+   default h1/.lm-sub margin shorthand declared above. */
+@media (max-width: 980px) {
+  .lab-landing.lead-magnet .lm-hero-left {
+    text-align: center;
+  }
+  .lab-landing.lead-magnet .lm-hero-left h1,
+  .lab-landing.lead-magnet .lm-hero-left .lm-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lab-landing.lead-magnet .lm-hero-left .lm-cta-stack {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lab-landing.lead-magnet .lm-hero-left .lm-badges {
+    justify-content: center;
+  }
+}

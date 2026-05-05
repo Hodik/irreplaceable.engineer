@@ -1,0 +1,233 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/lab-landing.css";
+import "../styles/lead-magnet.css";
+
+const assessmentUrl = "https://lab.irreplaceable.engineer/assessments/16/take";
+
+const domains = [
+  { name: "Databases", score: 11, total: 15, level: "low" },
+  { name: "Distributed systems", score: 8, total: 15, level: "low" },
+  { name: "API design", score: 13, total: 15, level: "hi" },
+  { name: "Observability", score: 6, total: 15, level: "low" },
+  { name: "Performance", score: 10, total: 15, level: "mid" },
+  { name: "Security", score: 9, total: 15, level: "mid" },
+];
+---
+
+<Layout>
+  <div class="lab-landing lead-magnet">
+    <div class="page lm-page-centered">
+      <section class="lm-hero" id="start">
+        <div class="container">
+          <div class="lm-hero-grid">
+            <div class="lm-hero-left">
+              <div class="lm-eyebrow">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Free</span>
+              </div>
+
+              <h1>The 2026 Backend Engineer Assessment</h1>
+
+              <p class="lm-sub">
+                15 hard questions that reveal the gaps standing between you and
+                a senior offer.
+              </p>
+
+              <div class="lm-cta-stack">
+                <a
+                  class="btn btn-primary btn-large"
+                  href={assessmentUrl}
+                  id="lab-take-assessment-cta"
+                >
+                  See where I stand
+                  <svg
+                    class="btn-arrow"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 8 H13 M9 4 L13 8 L9 12"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="lm-badges">
+                <span class="lm-badge"
+                  ><span class="lm-badge-glyph">⏱</span> ~25 min</span
+                >
+                <span class="lm-badge"
+                  ><span class="lm-badge-glyph">📝</span> 15 questions</span
+                >
+                <span class="lm-badge"
+                  ><span class="lm-badge-glyph">🎯</span> Personalized gap
+                  report</span
+                >
+              </div>
+            </div>
+
+            <div class="lm-hero-right">
+              <div class="lm-scorecard" aria-hidden="true">
+                <div class="lm-scorecard-head">
+                  <div class="crumbs">
+                    <span>Your report</span>
+                    <span class="sep">/</span>
+                    <span>Backend · 2026</span>
+                  </div>
+                  <div class="meta">RESULT</div>
+                </div>
+
+                <div class="lm-scorecard-top">
+                  <div class="lm-overall">
+                    <div class="lm-overall-label">Overall</div>
+                    <div class="lm-overall-score">
+                      <span class="lm-overall-num">57</span>
+                      <span class="lm-overall-den">/ 90</span>
+                    </div>
+                    <div class="lm-overall-tier">Mid · approaching senior</div>
+                  </div>
+                  <div class="lm-stand">
+                    <div class="lm-stand-label">Where you stand</div>
+                    <p class="lm-stand-text">
+                      Solid on API design. <span class="em">3 gaps</span> showing
+                      up around durability, replication, and on-call signal.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="lm-domains">
+                  <div class="lm-domains-head">
+                    <span>By domain</span>
+                    <span>Score</span>
+                  </div>
+                  {
+                    domains.map((d) => (
+                      <div class="lm-domain-row">
+                        <div class="lm-domain-name">{d.name}</div>
+                        <div class="lm-domain-track">
+                          <div
+                            class={`lm-domain-fill ${d.level}`}
+                            style={`width: ${(d.score / d.total) * 100}%`}
+                          />
+                        </div>
+                        <div class="lm-domain-score">
+                          {d.score}
+                          <span class="den">/{d.total}</span>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lm-trust-block">
+            <p class="lm-trust-line">
+              Already taken by backend engineers from
+            </p>
+            <div class="lm-trust-logos">
+              <span class="lm-trust-wordmark">Google</span>
+              <span class="lm-trust-wordmark">MongoDB</span>
+              <span class="lm-trust-wordmark">Revolut</span>
+              <span class="lm-trust-wordmark">EPAM</span>
+              <span class="lm-trust-more">and more</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      function resolveAttribution() {
+        var params = new URLSearchParams(location.search);
+        var utm = {};
+        [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_content",
+          "utm_term",
+        ].forEach(function (k) {
+          var v = params.get(k);
+          if (v) utm[k] = v;
+        });
+
+        if (!utm.utm_source) {
+          var ref = document.referrer;
+          if (ref) {
+            try {
+              var host = new URL(ref).hostname.replace(/^www\./, "");
+              var m = host.match(
+                /^(google|bing|duckduckgo|yahoo|yandex|baidu|ecosia|brave)\./,
+              );
+              if (m) {
+                utm.utm_source = m[1];
+                utm.utm_medium = "organic";
+              } else {
+                utm.utm_source = host;
+                utm.utm_medium = "referral";
+              }
+            } catch (e) {}
+          }
+          if (!utm.utm_source) {
+            utm.utm_source = "direct";
+            utm.utm_medium = "(none)";
+          }
+        }
+
+        var referringDomain = null;
+        try {
+          referringDomain = document.referrer
+            ? new URL(document.referrer).hostname
+            : null;
+        } catch (e) {}
+
+        return Object.assign({}, utm, {
+          referrer: document.referrer || null,
+          referring_domain: referringDomain,
+          landing_path: location.pathname,
+        });
+      }
+
+      var attribution = resolveAttribution();
+      try {
+        sessionStorage.setItem(
+          "lab_attribution",
+          JSON.stringify(attribution),
+        );
+      } catch (e) {}
+
+      function captureWhenReady(name, props) {
+        function fire() {
+          if (window.posthog && typeof window.posthog.capture === "function") {
+            window.posthog.capture(name, props);
+            return true;
+          }
+          return false;
+        }
+        if (fire()) return;
+        var tries = 0;
+        var iv = setInterval(function () {
+          if (fire() || ++tries > 40) clearInterval(iv);
+        }, 100);
+      }
+
+      captureWhenReady("landing_viewed", attribution);
+
+      var cta = document.getElementById("lab-take-assessment-cta");
+      if (cta) {
+        cta.addEventListener("click", function () {
+          captureWhenReady("take_assessment_clicked", attribution);
+        });
+      }
+    })();
+  </script>
+</Layout>
